@@ -1,22 +1,28 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
+
+import { Home } from './Pages/Home';
 
 import './App.css';
 
-const serverUrl = 'http://localhost:3000';
+const serverUrl = 'http://localhost:3002';
 
 const App: React.FC = () => {
-    const [message, setMessage] = React.useState<string | undefined>();
+    /*
+        TODO ROUTER
+    */
 
-    React.useEffect(() => {
-        (async () => {
-            const response = await axios.get<string>(serverUrl);
-            setMessage(response.data);
-        })();
-    }, []);
+    // const [message, setMessage] = React.useState<string | undefined>();
+
+    // React.useEffect(() => {
+    //     (async () => {
+    //         const response = await axios.get<string>(serverUrl);
+    //         setMessage(response.data);
+    //     })();
+    // }, []);
     return (
         <>
-            <h2>{message}</h2>
+            <Home />
         </>
     );
 };
