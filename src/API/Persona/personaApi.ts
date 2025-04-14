@@ -1,8 +1,8 @@
 import axios from 'axios';
+import { Puerto, BaseURL } from '../BaseURL';
 
-const PersonasApi = axios.create({
-    baseURL: 'http://localhost:3002/Persona',
-    withCredentials: true
+const personasApi = axios.create({
+    baseURL: `${BaseURL}${Puerto}`
 });
 
-export {PersonasApi}
+export { personasApi };

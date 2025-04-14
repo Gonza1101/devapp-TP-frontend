@@ -1,22 +1,16 @@
-export const Fila = () => {
+import React from 'react';
+import Persona from '../Model/Persona';
+
+type filaProps = {
+    persona: Persona;
+};
+export const Fila: React.FC<filaProps> = ({ persona }) => {
     //TODO hacer la tarjeta
-    /*
-    si es una Persona tengo que Mostrar
-            DNI | nombre | apellido
-            Una columna Nueva ACCIONES con 3 Botones
-            VER  | EDITAR  | BORRAR <br />
-            VER - voy a la pagina de la Persona detallada
-            EDITAR - ir a Page de la persona para editar
-            BORRAR -inicia la Logica de Borrado
-             *Abrir un PopUp de Confirmacion
-                con botenes Confirmar y Cancelar
-             *Confirmar -> Hago el pedido en la API
-    */
 
     return (
         <>
-            <li>Aca va una Persona o un Auto</li>
-                
+            <h2>Nombre: {persona.nombre}</h2>
+            <h2>Apellido: {persona.apellido}</h2>
         </>
     );
-}
+};
