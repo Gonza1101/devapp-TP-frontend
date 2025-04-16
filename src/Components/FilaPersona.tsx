@@ -1,12 +1,11 @@
 import React from 'react';
 import Persona from '../Model/Persona';
-import { ColumnaAccion } from './columnaAccion';
+import { ColumnaAccion } from './ColumnaAccion';
+
 type filaProps = {
     persona: Persona;
 };
 export const Fila: React.FC<filaProps> = ({ persona }) => {
-    //TODO hacer la tarjeta
-
     return (
         <>
             <div>

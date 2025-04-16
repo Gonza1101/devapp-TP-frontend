@@ -1,13 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Persona from '../Model/Persona';
-import { Link } from 'react-router-dom';
+
 type accionProps = {
     persona: Persona;
 };
 export const ColumnaAccion: React.FC<accionProps> = ({ persona }) => {
+    const navegarA = useNavigate();
 
-    const accionVer = () => {};
-    const accionEditar = () => {};
+    const accionVer = () => {
+        navegarA(`/persona/${persona.dni}`);
+    };
+    const accionEditar = () => {
+        navegarA('/persona');
+    };
     const accionBorrar = () => {};
 
     return (
