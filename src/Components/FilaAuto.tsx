@@ -1,9 +1,10 @@
 import Auto from '../Model/Auto';
+import { ColumnaAccion } from './ColumnaAccion';
 
 type filaProps = {
     auto: Auto;
 };
-export const Fila: React.FC<filaProps> = ({ auto }) => {
+export const FilaAuto: React.FC<filaProps> = ({ auto }) => {
     return (
         <>
             <div>

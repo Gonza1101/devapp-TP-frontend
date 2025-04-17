@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { buscarPersonaConDni } from '../API/Persona/buscarPersona';
 import Persona from '../Model/Persona';
+import { ListarAuto } from '../Components/ListadoAutos';
 
 export const VerPersona = () => {
     const { dni } = useParams<{ dni: string }>();
-    // console.log(dni);
     const [persona, setPersona] = useState<Persona | undefined>(undefined);
-    // console.log(persona);
     const obtenePersonaConDni = async (dniPersona: string) => {
         const response = await buscarPersonaConDni(dniPersona);
         setPersona(response);
     };
+    //las dependencia que se agregan en [] son la que useEffect
+    // debe tener en cuenta para un eventual cambio y actualizar
     useEffect(() => {
-        console.log('Entre en useEffect');
         obtenePersonaConDni(dni!);
     }, [dni]);
 
@@ -29,7 +29,7 @@ export const VerPersona = () => {
                 <h3>Genero: {persona?.genero}</h3>
                 <h3>Donante: {persona?.esDonante}</h3>
                 <div>
-                    lista
+                    <ListarAuto key={persona?.autos.length} lista={persona!.autos}></ListarAuto>
                 </div>
             </div>
         </>
