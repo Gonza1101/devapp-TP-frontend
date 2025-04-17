@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { buscarPersonaConDni } from '../API/Persona/buscarPersona';
 import Persona from '../Model/Persona';
-import { ListarAuto } from '../Components/ListadoAutos';
+import { Listado } from '../Components/Listado';
 
 export const VerPersona = () => {
     const { dni } = useParams<{ dni: string }>();
@@ -29,7 +29,11 @@ export const VerPersona = () => {
                 <h3>Genero: {persona?.genero}</h3>
                 <h3>Donante: {persona?.esDonante}</h3>
                 <div>
-                    <ListarAuto key={persona?.autos.length} lista={persona!.autos}></ListarAuto>
+                    <Listado
+                        key={persona?.autos.length}
+                        listaAutos={persona!.autos}
+                        listaPersonas={undefined}
+                    ></Listado>
                 </div>
             </div>
         </>

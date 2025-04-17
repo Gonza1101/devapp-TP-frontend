@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { listarPersona } from '../API/Persona/listarPersonas';
 import Persona from '../Model/Persona';
-import { ListarPersona } from '../Components/ListadoPersonas';
+import { Listado } from '../Components/Listado';
 import { useNavigate } from 'react-router-dom';
 
 export const PersonaPage = () => {
@@ -26,7 +26,7 @@ export const PersonaPage = () => {
                 <h2>Titulo PERSONA</h2>
                 <h3>Todas las Personas</h3>
                 <button onClick={agregarPersonaNueva}>Agregar Nuevo (en verde)</button>
-                <ListarPersona key={lista.length} lista={lista} />
+                <Listado key={lista.length} listaPersonas={lista} listaAutos={undefined} />
             </div>
         </>
     );
