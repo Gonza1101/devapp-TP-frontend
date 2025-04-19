@@ -3,11 +3,11 @@ interface Auto {
     idDueño: string;
     marca: string;
     modelo: string;
-    año: number;
-    papente: string;
+    anio: number;
     color: string;
     numeroDeChasis: string;
     motor: string;
+    patente: string;
 }
 
 export default Auto;

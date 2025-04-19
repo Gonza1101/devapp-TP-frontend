@@ -9,11 +9,11 @@ export const addAuto = async (autoNuevo: Auto) => {
             dniDueño: autoNuevo.idDueño,
             marca: autoNuevo.marca,
             modelo: autoNuevo.modelo,
-            anio: autoNuevo.año,
+            anio: autoNuevo.anio,
             color: autoNuevo.color,
             numeroChasis: autoNuevo.numeroDeChasis,
             motor: autoNuevo.motor,
-            patente: autoNuevo.papente
+            patente: autoNuevo.patente
         }),
         {
             headers: { 'Content-Type': 'applocation/json' }

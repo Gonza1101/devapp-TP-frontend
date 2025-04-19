@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { buscarPersonaConDni } from '../API/Persona/buscarPersona';
 import Persona from '../Model/Persona';
 import { Listado } from '../Components/Listado';
-
+import '../CSS/style.css';
 export const VerPersona = () => {
     const { dni } = useParams<{ dni: string }>();
     const [persona, setPersona] = useState<Persona | undefined>(undefined);
@@ -19,21 +19,17 @@ export const VerPersona = () => {
 
     return (
         <>
-            <div>
-                <h2>Confirmamos que sos una Persona</h2>
+            <div className="detallle">
+                <p>Confirmamos que sos una Persona</p>
                 <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="" />
-                <h3>Nombre: {persona?.nombre}</h3>
-                <h3>Apellido: {persona?.apellido}</h3>
-                <h3>Dni: {persona?.dni}</h3>
+                <p>Nombre: {persona?.nombre}</p>
+                <p>Apellido: {persona?.apellido}</p>
+                <p>Dni: {persona?.dni}</p>
                 {/* <h3>Fecha de Nacimiento: {persona.fechaNacimiento}</h3> */}
-                <h3>Genero: {persona?.genero}</h3>
-                <h3>Donante: {persona?.esDonante}</h3>
+                <p>Genero: {persona?.genero}</p>
+                <p>Donante: {persona?.esDonante}</p>
                 <div>
-                    <Listado
-                        key={persona?.autos.length}
-                        listaAutos={persona!.autos}
-                        listaPersonas={undefined}
-                    ></Listado>
+                    <Listado key={persona?.dni} listaAutos={persona?.autos} listaPersonas={undefined}></Listado>
                 </div>
             </div>
         </>

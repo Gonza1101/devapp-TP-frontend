@@ -9,30 +9,33 @@ type listarProps = {
 };
 
 export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos }) => {
-    const [persona, setpersona] = useState<Persona[]>([]);
+    const [persona, setpersona] = useState<Persona[] | undefined>(undefined);
 
-    const [auto, setAuto] = useState<Auto[]>([]);
+    const [autos, setAutos] = useState<Auto[] | undefined>(undefined);
 
     const setearLista = () => {
-        if (listaPersonas !== undefined) {
+        if (listaPersonas) {
+            console.log('Seteo Lista de Personas');
             setpersona(listaPersonas);
         }
-        if (listaAutos !== undefined) {
-            setAuto(listaAutos);
+        if (listaAutos) {
+            console.log('seteo lista de Autos');
+            setAutos(listaAutos);
         }
     };
 
     useEffect(() => {
         setearLista();
-    });
+    }, []);
 
     return (
         <>
-            <div>
-                <h2>Listado de Personas Registradas</h2>
-                {persona !== undefined
-                    ? persona.map((p) => <Fila key={persona.length} persona={p} auto={undefined} />)
-                    : auto.map((a) => <Fila key={auto.length} persona={undefined} auto={a} />)}
+            <div className="listado">
+                <div className="fila">
+                    {persona
+                        ? persona.map((p) => <Fila key={persona.length} persona={p} auto={undefined} />)
+                        : autos?.map((a) => <Fila key={autos.length} persona={undefined} auto={a} />)}
+                </div>
             </div>
         </>
     );

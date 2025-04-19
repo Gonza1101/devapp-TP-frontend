@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Persona from '../Model/Persona';
 import Auto from '../Model/Auto';
+import '../CSS/style.css';
 
 type accionProps = {
     persona: Persona | undefined;
@@ -20,10 +21,16 @@ export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
 
     return (
         <>
-            <div>
-                <button onClick={accionVer}>Ver (azul)</button>
-                <button onClick={accionEditar}>Editar (amarillo)</button>
-                <button onClick={accionBorrar}>Borrar(rojo)</button>
+            <div className="botonesAccion">
+                <button className="ver" onClick={accionVer}>
+                    Ver
+                </button>
+                <button className="editar" onClick={accionEditar}>
+                    Editar
+                </button>
+                <button className="borrar" onClick={accionBorrar}>
+                    Borrar
+                </button>
             </div>
         </>
     );

@@ -1,8 +1,8 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { InicioPage } from '../Pages/InicioPage';
 import { AutoPage, PersonaPage } from '../Pages';
-import { AgregarPersona } from '../Pages/AgregarPersona';
-import { VerPersona } from '../Pages/VerPersona';
+import { AgregarPersona } from '../Pages/PersonasAgregar';
+import { VerPersona } from '../Pages/PersonasVer';
 
 export const AppRouter = createBrowserRouter(
     createRoutesFromElements(

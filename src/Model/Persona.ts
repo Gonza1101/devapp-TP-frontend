@@ -5,10 +5,10 @@ interface Persona {
     nombre: string;
     apellido: string;
     dni: string;
-    fechaNacimiento: Date;
+    fechaNacimiento: string;
     genero: 'masculino' | 'femenino' | 'noBinario';
-    autos: Auto[];
     esDonante: boolean;
+    autos: Auto[];
 }
 
 export default Persona;

@@ -20,6 +20,7 @@ export const AgregarPersona = () => {
                         <option value="No Binario"></option>
                     </datalist>
                 </form>
+                <button>Agregar</button>
             </div>
         </>
     );

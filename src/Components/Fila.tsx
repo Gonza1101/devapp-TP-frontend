@@ -2,30 +2,36 @@ import React from 'react';
 import Persona from '../Model/Persona';
 import Auto from '../Model/Auto';
 import { ColumnaAccion } from './ColumnaAccion';
+import '../CSS/style.css';
 
 type filaProps = {
     persona?: Persona;
     auto?: Auto;
 };
 export const Fila: React.FC<filaProps> = ({ persona, auto }) => {
+    console.log(auto);
     return (
         <>
-            {persona !== undefined ? (
-                <div>
+            {persona ? (
+                <div className="filaPersona">
                     <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
-                    <h3>Nombre: {persona.nombre}</h3>
-                    <h3>Apellido: {persona.apellido}</h3>
-                    <h3>DNI: {persona.dni}</h3>
+                    <div className="filaCuerpo">
+                        <p>{persona.nombre}</p>
+                        <p>{persona.apellido}</p>
+                        <p>{persona.dni}</p>
+                    </div>
                     <ColumnaAccion key={persona!.dni} persona={persona} auto={auto}></ColumnaAccion>
                 </div>
             ) : (
-                <div>
+                <div className="filaAuto">
                     <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
-                    <h3>Patente: {auto!.papente}</h3>
-                    <h3>Marca: {auto!.marca}</h3>
-                    <h3>Modelo: {auto!.modelo}</h3>
-                    <h3>Año:{auto!.año}</h3>
-                    <ColumnaAccion key={auto!.papente} persona={persona} auto={auto}></ColumnaAccion>
+                    <div className="filaCuerpo">
+                        <p>{auto?.patente}</p>
+                        <p> {auto?.marca}</p>
+                        <p>{auto?.modelo}</p>
+                        <p>{auto?.anio}</p>
+                    </div>
+                    <ColumnaAccion key={auto!.patente} persona={persona} auto={auto}></ColumnaAccion>
                 </div>
             )}
         </>
