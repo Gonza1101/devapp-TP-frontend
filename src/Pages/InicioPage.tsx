@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../CSS/style.css';
+import '../CSS/paginaStyle.css';
 
 export const InicioPage = () => {
     return (

@@ -1,18 +1,18 @@
 export const AgregarPersona = () => {
     return (
         <>
-            <div>
-                <h2>Pagina para editar Persona</h2>
+            <div className="inicio">
+                <p>Nueva Persona</p>
                 <form>
-                    <h3>Nombre</h3>
+                    <p>Nombre</p>
                     <input type="Nombre" />
-                    <h3>Apellido</h3>
+                    <p>Apellido</p>
                     <input type="Apellido" />
-                    <h3>DNI</h3>
+                    <p>DNI</p>
                     <input type="DNI" />
-                    <h3>Fecha de Nacimiento</h3>
+                    <p>Fecha de Nacimiento</p>
                     <input type="Fecha de nacimiento" />
-                    <h3>Genero</h3>
+                    <p>Genero</p>
                     <input list="genero" type="text" />
                     <datalist id="genero">
                         <option value="Masculino">Masculino</option>
@@ -20,7 +20,7 @@ export const AgregarPersona = () => {
                         <option value="No Binario"></option>
                     </datalist>
                 </form>
-                <button>Agregar</button>
+                <button className="agregarPersona">Agregar</button>
             </div>
         </>
     );

@@ -1,0 +1,54 @@
+button{
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.accionAuto {
+    display: inline;
+}
+.agregarPersona {
+    font-size: 25px;
+    background-color: #659d6a;
+    color: white;
+}
+.agregarPersona:hover{
+    background-color: #3e6341;
+}
+
+.botonesAccion {
+    margin: 2%;
+    display: inline-flex;
+    width: max-content;
+}
+.botonesAccion button {
+    font-size: xx-large;
+    margin: 1%;
+}
+
+.ver {
+    margin: 1%;
+    background-color: #659d6a;
+}
+.ver:hover {
+    background-color: #145a32;
+    color: beige;
+}
+.editar {
+    background-color: #a9cce3 ;
+}
+.editar:hover {
+    background-color: #1b4f72 ;
+    color: beige;
+}
+
+.borrar {
+    background-color: #e6b0aa;
+}
+
+.borrar:hover {
+    background-color: #641e16;
+    color: beige;
+}
+
+

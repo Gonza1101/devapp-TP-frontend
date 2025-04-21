@@ -2,7 +2,7 @@ import React from 'react';
 import Persona from '../Model/Persona';
 import Auto from '../Model/Auto';
 import { ColumnaAccion } from './ColumnaAccion';
-import '../CSS/style.css';
+import '../CSS/listadoFila.css';
 
 type filaProps = {
     persona?: Persona;
@@ -14,7 +14,7 @@ export const Fila: React.FC<filaProps> = ({ persona, auto }) => {
         <>
             {persona ? (
                 <div className="filaPersona">
-                    <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
+                    <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="alternatetext" />
                     <div className="filaCuerpo">
                         <p>{persona.nombre}</p>
                         <p>{persona.apellido}</p>
@@ -23,15 +23,19 @@ export const Fila: React.FC<filaProps> = ({ persona, auto }) => {
                     <ColumnaAccion key={persona!.dni} persona={persona} auto={auto}></ColumnaAccion>
                 </div>
             ) : (
-                <div className="filaAuto">
-                    <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
-                    <div className="filaCuerpo">
-                        <p>{auto?.patente}</p>
-                        <p> {auto?.marca}</p>
-                        <p>{auto?.modelo}</p>
-                        <p>{auto?.anio}</p>
+                <div className="fila">
+                    <div className="filaAuto">
+                        <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
+                        <div className="filaCuerpo">
+                            <p> {auto?.marca}</p>
+                            <p>{auto?.modelo}</p>
+                            <p>{auto?.anio}</p>
+                            <p>{auto?.patente}</p>
+                        </div>
                     </div>
-                    <ColumnaAccion key={auto!.patente} persona={persona} auto={auto}></ColumnaAccion>
+                    <div className="accionAuto">
+                        <ColumnaAccion key={auto!.patente} persona={persona} auto={auto}></ColumnaAccion>
+                    </div>
                 </div>
             )}
         </>

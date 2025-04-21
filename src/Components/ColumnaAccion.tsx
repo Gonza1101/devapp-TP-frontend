@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Persona from '../Model/Persona';
 import Auto from '../Model/Auto';
-import '../CSS/style.css';
+import '../CSS/botenesAccion.css';
 
 type accionProps = {
     persona: Persona | undefined;
@@ -11,10 +11,10 @@ type accionProps = {
 export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
     const navegarA = useNavigate();
 
-    const accionVer = () => {
+    const accionVerPersona = () => {
         navegarA(`/persona/${persona!.dni}`); // =>VerPersona
     };
-    const accionEditar = () => {
+    const accionEditarPersona = () => {
         navegarA('/persona');
     };
     const accionBorrar = () => {};
@@ -22,14 +22,14 @@ export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
     return (
         <>
             <div className="botonesAccion">
-                <button className="ver" onClick={accionVer}>
-                    Ver
+                <button className="ver" onClick={accionVerPersona}>
+                    🔍
                 </button>
-                <button className="editar" onClick={accionEditar}>
-                    Editar
+                <button className="editar" onClick={accionEditarPersona}>
+                    📝
                 </button>
                 <button className="borrar" onClick={accionBorrar}>
-                    Borrar
+                    🔫
                 </button>
             </div>
         </>

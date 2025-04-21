@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Auto from '../Model/Auto';
 import Persona from '../Model/Persona';
 import { Fila } from './Fila';
+import '../CSS/listadoFila.css';
 
 type listarProps = {
     listaPersonas: Persona[] | undefined;
@@ -31,11 +32,9 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos }) =>
     return (
         <>
             <div className="listado">
-                <div className="fila">
-                    {persona
-                        ? persona.map((p) => <Fila key={persona.length} persona={p} auto={undefined} />)
-                        : autos?.map((a) => <Fila key={autos.length} persona={undefined} auto={a} />)}
-                </div>
+                {persona
+                    ? persona.map((p) => <Fila key={persona.length} persona={p} auto={undefined} />)
+                    : autos?.map((a) => <Fila key={autos.length} persona={undefined} auto={a} />)}
             </div>
         </>
     );

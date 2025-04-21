@@ -1,0 +1,45 @@
+.inicio{
+    display: block;
+    text-align: center;
+}
+.inicio p{
+    font-size: 30px;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+.inicio a{
+    padding: 2%;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace, 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+
+}
+
+.inicio button {
+    justify-content: right;
+}
+
+.detalle {
+    display: inline-flex;
+    border-radius: 25px; 
+    justify-content: space-between;
+    background-color: #c0c5ce;
+    width: max-content;
+
+    
+}
+
+.detalle img {
+    width: 50%;
+    border-radius: 25px;
+}
+.detalleDato{
+    width: max-content;
+}
+
+.detalleDato p{
+    display: block;
+    padding-right: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: nowrap;
+    
+}
