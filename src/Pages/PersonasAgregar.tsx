@@ -32,11 +32,12 @@ export const AgregarPersona = () => {
             apellido: inputApellidRef.current!.value,
             dni: inputDniRef.current!.value,
             fechaNacimiento: inputFechaNacimientoRef.current!.value,
-            genero: inputGeneroRef.current!.value,
-            esDonante: true,
+            genero: inputGeneroRef.current!.value.toLowerCase(),
+            esDonante: 'true',
             autos: []
         };
-        const rta = await addPerson();
+        console.log(personaNueva);
+        const rta = await addPerson(personaNueva);
         console.log(rta);
     };
     return (
@@ -52,19 +53,22 @@ export const AgregarPersona = () => {
                         <p>DNI</p>
                         <input ref={inputDniRef} type="DNI" />
                         <p>Fecha de Nacimiento</p>
-                        <input ref={inputFechaNacimientoRef} type="Fecha de nacimiento" />
+                        <input ref={inputFechaNacimientoRef} type="date" name="fecha_nacimiento"></input>
                         <p>Donante</p>
-                        <input type="checkbox" />
+                        <input id="true" type="checkbox" />
+                        <label htmlFor="true">Sí</label>
                         <p>Genero</p>
                         <input ref={inputGeneroRef} list="genero" type="text" />
                         <datalist id="genero">
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino"></option>
-                            <option value="No Binario"></option>
+                            <option value="NoBinario"></option>
                         </datalist>
                     </form>
                     <div className="botonesAccion">
-                        <button onClick={handlerAgregar} className="agregarPersona">👍 Agregar </button>
+                        <button onClick={handlerAgregar} className="agregarPersona">
+                            👍 Agregar
+                        </button>
                     </div>
                 </div>
             </div>

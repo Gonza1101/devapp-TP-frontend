@@ -7,7 +7,7 @@ interface Persona {
     dni?: string;
     fechaNacimiento?: string;
     genero?: string;
-    esDonante?: boolean;
+    esDonante?: string;
     autos?: Auto[];
 }
 

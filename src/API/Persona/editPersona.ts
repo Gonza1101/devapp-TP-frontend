@@ -1,9 +1,9 @@
 import Persona from '../../Model/Persona';
 import { baseURL } from '../BaseURL';
 
-export const editarPersona = async (dniPersona: string, datosNuevos: Persona) => {
+export const editPersona = async (idPersona: string, datosNuevos: Persona) => {
     const response = await baseURL.put(
-        `/persona/${dniPersona}`,
+        `/persona/${idPersona}`,
         JSON.stringify({
             nombre: datosNuevos.nombre,
             apellido: datosNuevos.apellido,
@@ -14,5 +14,5 @@ export const editarPersona = async (dniPersona: string, datosNuevos: Persona) =>
         }),
         {}
     );
-    return response.data;
+    return response.status;
 };

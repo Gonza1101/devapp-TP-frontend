@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { buscarPersonaConDni } from '../API/Persona/buscarPersona';
 import Persona from '../Model/Persona';
 import { Listado } from '../Components/Listado';
+
 export const VerPersona = () => {
     const { dni } = useParams<{ dni: string }>();
     const [persona, setPersona] = useState<Persona | undefined>(undefined);

@@ -16,11 +16,9 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos }) =>
 
     const setearLista = () => {
         if (listaPersonas) {
-            console.log('Seteo Lista de Personas');
             setpersona(listaPersonas);
         }
         if (listaAutos) {
-            console.log('seteo lista de Autos');
             setAutos(listaAutos);
         }
     };

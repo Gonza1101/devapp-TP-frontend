@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Persona from '../Model/Persona';
 import Auto from '../Model/Auto';
@@ -10,22 +10,43 @@ type accionProps = {
 };
 export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
     const navegarA = useNavigate();
+    const [tipo, setTipo] = useState<string>('');
 
-    const accionVerPersona = () => {
-        navegarA(`/persona/${persona!.dni}`); // =>VerPersona
+    const definirTipo = (persona: Persona | undefined) => {
+        if (persona) {
+            setTipo('persona');
+        } else {
+            setTipo('auto');
+        }
     };
-    const accionEditarPersona = () => {
-        navegarA('/persona');
+
+    const accionVer = () => {
+        if (tipo === 'persona') {
+            navegarA(`/persona/${persona!.dni}`); // =>VerPersona
+        } else {
+            navegarA(`/auto/${auto?.id}`);
+        }
+    };
+    const accionEditar = () => {
+        if (tipo === 'persona') {
+            navegarA(`/persona/edit/${persona!.id}`); // =>EditarPersona
+        } else {
+            navegarA('/auto');
+        }
     };
     const accionBorrar = () => {};
+
+    useEffect(() => {
+        definirTipo(persona);
+    }, []);
 
     return (
         <>
             <div className="botonesAccion">
-                <button className="ver" onClick={accionVerPersona}>
+                <button className="ver" onClick={accionVer}>
                     🔍
                 </button>
-                <button className="editar" onClick={accionEditarPersona}>
+                <button className="editar" onClick={accionEditar}>
                     📝
                 </button>
                 <button className="borrar" onClick={accionBorrar}>

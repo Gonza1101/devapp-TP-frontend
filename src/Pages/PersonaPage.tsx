@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { listarPersona } from '../API/Persona/listarPersonas';
+import { listarPersonas } from '../API/Persona/listarPersonas';
 import Persona from '../Model/Persona';
 import { Listado } from '../Components/Listado';
 import { useNavigate } from 'react-router-dom';
@@ -9,12 +9,12 @@ export const PersonaPage = () => {
     const navegarA = useNavigate();
 
     const obtenerLista = async () => {
-        const personas = await listarPersona();
+        const personas = await listarPersonas();
         setLista(personas);
     };
 
     const agregarPersonaNueva = () => {
-        navegarA('/persona');
+        navegarA('/persona/add');
     };
 
     useEffect(() => {
@@ -31,7 +31,6 @@ export const PersonaPage = () => {
                     </button>
                 </div>
             </div>
-
         </>
     );
 };
