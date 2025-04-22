@@ -1,47 +1,97 @@
-
-.listado{
-    /* background-color: #aed6f1 ; */
-    padding: 25px 0px 25px 0px;
-    text-align: center;
+.listado {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 75dvw; /* Un ancho un poco mayor para el listado y el botón */
+    max-width: 90%;
+    text-align: center; /* Centramos el contenido dentro del listado */
 }
-
-.fila{
-    display: inline-block;
-    background-color: beige;
-    border-radius: 15px;
-
+  
+.listado p {
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .filaPersona {
-    margin: 1%;
-    display:flex;
-    border-radius: 15px;
-    background-color: beige;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Courier New', Courier, monospace;
+    display: flex; /* Para alinear la imagen y la información en la misma línea */
+    align-items: center; /* Para centrar verticalmente la imagen y el texto */
+    background-color: #f0efef;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05); /* Una sombra muy suave para destacar cada fila */
+    margin-bottom: 10px; /* Espacio entre cada fila de persona */
 }
-
-.filaPersona img{
-    width: 5%;
-    margin-left: 30px;
-    border-radius: 15px;
+  
+.filaPersona img {
+    width: 10dvw; /* Tamaño de la imagen de avatar */
+    /* height: 100px; */
+    border-radius: 50%; /* Para hacer la imagen circular */
+    margin-right: 15px; /* Espacio entre la imagen y el texto */
+    object-fit: cover; /* Asegura que la imagen cubra el círculo sin deformarse */
 }
-
-.filaAuto {
-    display:inline-block;
-    border-radius: 10px;
-    align-items: center;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.filaAuto img {
-    margin-top:5% ;
-    width: 75%;
-    border-radius: 15px;
-}
-
+  
 .filaCuerpo {
-    display: contents;
-    font-size: 25px;
+    display: block;
+    justify-content: center;
+    flex-grow: 1; /* Permite que el cuerpo de la fila ocupe el espacio restante */
+}
+  
+.filaCuerpo p {
+    margin: 5px 0; /* Espacio vertical entre los párrafos de nombre, apellido y DNI */
+    color: #333;
+    font-size: 1.5em;
+}
+  
+.filaCuerpo p:first-child {
+    font-weight: bold; /* Resalta el nombre */
+}
+  
+/* Opcional: Si quieres estilos diferentes para cada dato */
+/*
+.filaCuerpo p:nth-child(2) {
+color: #555; /* Estilo para el apellido 
+}
+
+.filaCuerpo p:last-child {
+color: #777; /* Estilo para el DNI 
+font-size: 0.9em;
+}
+*/
+.filaAuto {
+    margin: 2%;
+    display: inline-flex; /* Para alinear la imagen y el texto del auto horizontalmente */
+    background-color: #f0efef;
+    border-radius: 15px;
+    flex-direction: column; /* Cambiamos a columna para apilar la imagen y la información */
+    padding: 10px;
+    align-items: center; /* Centramos la imagen y el texto horizontalmente */
+    gap: 10px; /* Espacio entre la imagen y el texto */
+    width: 200px; /* Ancho fijo para el bloque de información del auto */
+}
+  
+.filaAuto img {
+    width: 10dvw; /* Un tamaño un poco mayor para la imagen */
+    /* height: 80px; */
+    border-radius: 50%;
+    object-fit: cover;
+}
+  
+.filaAuto .filaCuerpo {
+    display: flex;
+    flex-direction: column; /* Apila la marca, modelo, año y patente */
+    align-items: center; /* Centra el texto horizontalmente */
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center; /* Asegura que el texto dentro de los párrafos también esté centrado */
+}
+  
+.filaAuto .filaCuerpo p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 1.5em;
+}
+  
+.filaAuto .filaCuerpo p:first-child {
+    font-weight: bold; /* Resalta la marca */
 }

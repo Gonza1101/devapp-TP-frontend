@@ -23,17 +23,13 @@ export const PersonaPage = () => {
     return (
         <>
             <div className="inicio">
-                <p>PERSONA</p>
-                {/* <button className="agregarPersona" onClick={agregarPersonaNueva}>
-                    Agregar Persona
-                </button> */}
-                {/* <p>Lista de Personas</p> */}
-            </div>
-            <Listado key={lista.length} listaPersonas={lista} listaAutos={undefined} />
-            <div className="inicio">
-                <button className="agregarPersona" onClick={agregarPersonaNueva}>
-                    Agregar Persona
-                </button>
+                <div className="listado">
+                    <p>PERSONA</p>
+                    <Listado key={lista.length} listaPersonas={lista} listaAutos={undefined} />
+                    <button className="agregarPersona" onClick={agregarPersonaNueva}>
+                        🙋‍♂️ Agregar Persona 🙋‍♀️
+                    </button>
+                </div>
             </div>
 
         </>

@@ -30,10 +30,9 @@ export const VerPersona = () => {
                         <p>Donante: {persona?.esDonante}</p>
                     </div>
                 </div>
-            </div>
-
-            <div className="listado">
-                <Listado key={persona?.dni} listaAutos={persona?.autos} listaPersonas={undefined}></Listado>
+                <div className="listado">
+                    <Listado key={persona?.dni} listaAutos={persona?.autos} listaPersonas={undefined}></Listado>
+                </div>
             </div>
         </>
     );

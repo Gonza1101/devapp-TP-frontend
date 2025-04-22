@@ -1,0 +1,72 @@
+.formulario {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+  }
+  
+  .formulario .titulo {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .formulario form p {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+  }
+  
+  .formulario form input[type="Nombre"],
+  .formulario form input[type="Apellido"],
+  .formulario form input[type="DNI"],
+  .formulario form input[type="Fecha de nacimiento"],
+  .formulario form input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.5em;
+    box-sizing: border-box;
+  }
+  
+  .formulario form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .formulario .botonesAccion {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .formulario .botonesAccion button.agregarPersona {
+    background-color: #659d6a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .formulario .botonesAccion button.agregarPersona:hover {
+    background-color: #3e6341;
+  }
+  
+  .formulario form datalist#genero {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+  }

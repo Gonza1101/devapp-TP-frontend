@@ -1,0 +1,237 @@
+/* Estilos para la página de inicio */
+.inicio {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+    text-align: center; /* Centra el texto dentro del contenedor */
+  }
+  
+  .inicio p {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .inicio a {
+    display: inline-block; /* Permite aplicar padding y margin */
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    color: #007bff;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .inicio a:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Estilos para el contenedor principal del formulario y el listado */
+  .inicio {
+    /* Reutilizamos el estilo para centrar, pero podríamos tener contenedores diferentes si es necesario */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+  }
+  
+  /* Estilos para el formulario */
+  .formulario {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+  }
+  
+  .formulario .titulo {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .formulario form p {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .formulario form input[type="Nombre"],
+  .formulario form input[type="Apellido"],
+  .formulario form input[type="DNI"],
+  .formulario form input[type="Fecha de nacimiento"],
+  .formulario form input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+  }
+  
+  .formulario form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .formulario .botonesAccion {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .formulario .botonesAccion button.agregarPersona {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .formulario .botonesAccion button.agregarPersona:hover {
+    background-color: #1e7e34;
+  }
+  
+  .formulario form datalist#genero {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos para el listado */
+  .listado {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 90%;
+    text-align: center;
+  }
+  
+  .listado p {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .listado button.agregarPersona {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .listado button.agregarPersona:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para la fila de persona en el listado */
+  .filaPersona {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+  }
+  
+  .filaPersona img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+  }
+  
+  .filaCuerpo {
+    flex-grow: 1;
+  }
+  
+  .filaCuerpo p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 1em;
+  }
+  
+  .filaCuerpo p:first-child {
+    font-weight: bold;
+  }
+  
+  /* Estilos para los botones de acción en cada fila */
+  .botonesAccion {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+  
+  .botonesAccion button {
+    background-color: #eee;
+    color: #555;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .botonesAccion button:hover {
+    background-color: #ddd;
+    color: #333;
+  }
+  
+  .botonesAccion button.ver {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .botonesAccion button.ver:hover {
+    background-color: #0056b3;
+  }
+  
+  .botonesAccion button.editar {
+    background-color: #ffc107;
+    color: #333;
+  }
+  
+  .botonesAccion button.editar:hover {
+    background-color: #d99e00;
+  }
+  
+  .botonesAccion button.borrar {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .botonesAccion button.borrar:hover {
+    background-color: #c82333;
+  }
+  
+  .botonesAccion button span {
+    font-size: 1.2em;
+  }

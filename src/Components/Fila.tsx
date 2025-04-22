@@ -23,19 +23,15 @@ export const Fila: React.FC<filaProps> = ({ persona, auto }) => {
                     <ColumnaAccion key={persona!.dni} persona={persona} auto={auto}></ColumnaAccion>
                 </div>
             ) : (
-                <div className="fila">
-                    <div className="filaAuto">
-                        <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
-                        <div className="filaCuerpo">
-                            <p> {auto?.marca}</p>
-                            <p>{auto?.modelo}</p>
-                            <p>{auto?.anio}</p>
-                            <p>{auto?.patente}</p>
-                        </div>
+                <div className="filaAuto">
+                    <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
+                    <div className="filaCuerpo">
+                        <p> {auto?.marca}</p>
+                        <p>{auto?.modelo}</p>
+                        <p>{auto?.anio}</p>
+                        <p>{auto?.patente}</p>
                     </div>
-                    <div className="accionAuto">
-                        <ColumnaAccion key={auto!.patente} persona={persona} auto={auto}></ColumnaAccion>
-                    </div>
+                    <ColumnaAccion key={auto!.patente} persona={persona} auto={auto}></ColumnaAccion>
                 </div>
             )}
         </>
