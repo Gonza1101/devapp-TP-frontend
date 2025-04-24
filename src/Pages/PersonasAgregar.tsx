@@ -9,6 +9,7 @@ export const AgregarPersona = () => {
     const inputDniRef = useRef<HTMLInputElement>(null);
     const inputFechaNacimientoRef = useRef<HTMLInputElement>(null);
     const inputGeneroRef = useRef<HTMLInputElement>(null);
+    const inputEsDonanteRef = useRef<HTMLInputElement>(null);
 
     const handlerAgregar = () => {
         if (
@@ -33,7 +34,7 @@ export const AgregarPersona = () => {
             dni: inputDniRef.current!.value,
             fechaNacimiento: inputFechaNacimientoRef.current!.value,
             genero: inputGeneroRef.current!.value.toLowerCase(),
-            esDonante: 'true',
+            esDonante: inputEsDonanteRef.current!.checked,
             autos: []
         };
         console.log(personaNueva);
@@ -55,14 +56,14 @@ export const AgregarPersona = () => {
                         <p>Fecha de Nacimiento</p>
                         <input ref={inputFechaNacimientoRef} type="date" name="fecha_nacimiento"></input>
                         <p>Donante</p>
-                        <input id="true" type="checkbox" />
+                        <input id="true" type="checkbox" ref={inputEsDonanteRef} />
                         <label htmlFor="true">Sí</label>
                         <p>Genero</p>
                         <input ref={inputGeneroRef} list="genero" type="text" />
                         <datalist id="genero">
                             <option value="Masculino">Masculino</option>
-                            <option value="Femenino"></option>
-                            <option value="NoBinario"></option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="NoBinario">No Binario</option>
                         </datalist>
                     </form>
                     <div className="botonesAccion">

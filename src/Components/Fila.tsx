@@ -8,6 +8,7 @@ type filaProps = {
     persona?: Persona;
     auto?: Auto;
 };
+
 export const Fila: React.FC<filaProps> = ({ persona, auto }) => {
     return (
         <>

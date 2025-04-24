@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const PersonaPage = () => {
     const [lista, setLista] = useState<Persona[]>([]);
+
     const navegarA = useNavigate();
 
     const obtenerLista = async () => {

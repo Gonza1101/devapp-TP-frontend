@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Persona from '../Model/Persona';
 import Auto from '../Model/Auto';
 import '../CSS/botenesAccion.css';
+import { BorrarComponente } from './BorrarComponente';
+import { deletePersona } from '../API/Persona/deletePersona';
 
 type accionProps = {
     persona: Persona | undefined;
@@ -18,6 +20,14 @@ export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
         } else {
             setTipo('auto');
         }
+    };
+    const borrarEntidad = async (idPersona: string) => {
+        const response = await deletePersona(idPersona);
+        return response;
+    };
+
+    const handlerBorrar = () => {
+        borrarEntidad(persona!.id);
     };
 
     const accionVer = () => {
@@ -52,6 +62,9 @@ export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
                 <button className="borrar" onClick={accionBorrar}>
                     🔫
                 </button>
+            </div>
+            <div>
+                <BorrarComponente key={persona?.id} borrar={handlerBorrar} entidad={persona!}></BorrarComponente>
             </div>
         </>
     );

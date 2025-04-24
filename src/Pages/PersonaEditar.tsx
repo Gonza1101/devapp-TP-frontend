@@ -18,6 +18,7 @@ export const EditarPersona = () => {
     const inputDniRef = useRef<HTMLInputElement>(null);
     const inputFechaNacimientoRef = useRef<HTMLInputElement>(null);
     const inputGeneroRef = useRef<HTMLInputElement>(null);
+    const inputEsDonanteRef = useRef<HTMLInputElement>(null);
 
     const handlerEditar = () => {
         if (
@@ -42,13 +43,13 @@ export const EditarPersona = () => {
             dni: inputDniRef.current!.value,
             fechaNacimiento: inputFechaNacimientoRef.current!.value,
             genero: inputGeneroRef.current!.value.toLowerCase(),
-            esDonante: 'true',
+            esDonante: inputEsDonanteRef.current!.checked,
             autos: []
         };
         const rta = await editPersona(idPersona!, personaEditada);
         console.log(rta === 200);
         if (rta === 200) {
-            navegarA('/personas')
+            navegarA('/personas');
         } else {
             alert('error 400');
         }
@@ -77,7 +78,7 @@ export const EditarPersona = () => {
                             value={persona?.fechaNacimiento}
                         ></input>
                         <label>Donante</label>
-                        <input id="true" type="checkbox" />
+                        <input id="true" type="checkbox" ref={inputEsDonanteRef} />
                         <label htmlFor="true">Sí</label>
                         <label>Genero</label>
                         <input ref={inputGeneroRef} list="genero" type="text" defaultValue={persona?.genero} />
