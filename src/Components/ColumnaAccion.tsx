@@ -1,54 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Persona from '../Model/Persona';
 import Auto from '../Model/Auto';
-import '../CSS/botenesAccion.css';
 import { BorrarComponente } from './BorrarComponente';
-import { deletePersona } from '../API/Persona/deletePersona';
+import '../CSS/botenesAccion.css';
+import '../CSS/popup.css';
+import { useNavigate } from 'react-router-dom';
 
 type accionProps = {
-    persona: Persona | undefined;
-    auto: Auto | undefined;
+    persona: Persona;
+    auto: Auto;
+    listar: () => void;
 };
 export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
+    // console.log('Persona');
+    // console.log(persona);
+    // console.log('Auto');
+    // console.log(auto);
     const navegarA = useNavigate();
-    const [tipo, setTipo] = useState<string>('');
+    const [clase, setClase] = useState<string>('popupborrar');
 
-    const definirTipo = (persona: Persona | undefined) => {
-        if (persona) {
-            setTipo('persona');
-        } else {
-            setTipo('auto');
-        }
-    };
-    const borrarEntidad = async (idPersona: string) => {
-        const response = await deletePersona(idPersona);
-        return response;
+    const handlerCancelar = () => {
+        setClase('popupborrar');
     };
 
-    const handlerBorrar = () => {
-        borrarEntidad(persona!.id);
+    const handlerEliminar = () => {
+        setClase('popupborrar');
     };
-
     const accionVer = () => {
-        if (tipo === 'persona') {
-            navegarA(`/persona/${persona!.dni}`); // =>VerPersona
+        if (persona) {
+            navegarA(`/persona/${persona?.dni}`); // =>VerPersona
         } else {
             navegarA(`/auto/${auto?.id}`);
         }
     };
     const accionEditar = () => {
-        if (tipo === 'persona') {
-            navegarA(`/persona/edit/${persona!.id}`); // =>EditarPersona
+        if (persona) {
+            navegarA(`/persona/edit/${persona?.id}`); // =>EditarPersona
         } else {
             navegarA('/auto');
         }
     };
-    const accionBorrar = () => {};
+    const accionBorrar = () => {
+        setClase('popupborrar mostrar');
+    };
 
-    useEffect(() => {
-        definirTipo(persona);
-    }, []);
+    useEffect(() => {}, []);
 
     return (
         <>
@@ -63,8 +59,20 @@ export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
                     🔫
                 </button>
             </div>
-            <div>
-                <BorrarComponente key={persona?.id} borrar={handlerBorrar} entidad={persona!}></BorrarComponente>
+            <div id="popupBorrar" className={clase}>
+                {persona ? (
+                    <BorrarComponente
+                        key={persona.id}
+                        eliminar={handlerEliminar}
+                        cancelar={handlerCancelar}
+                    ></BorrarComponente>
+                ) : (
+                    <BorrarComponente
+                        key={auto.id}
+                        eliminar={handlerEliminar}
+                        cancelar={handlerCancelar}
+                    ></BorrarComponente>
+                )}
             </div>
         </>
     );

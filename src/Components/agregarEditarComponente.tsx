@@ -1,2 +1,1 @@
-export const EditarComponente = () => {
-}
+export const EditarComponente = () => {};

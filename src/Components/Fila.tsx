@@ -5,11 +5,12 @@ import { ColumnaAccion } from './ColumnaAccion';
 import '../CSS/listadoFila.css';
 
 type filaProps = {
-    persona?: Persona;
-    auto?: Auto;
+    persona: Persona;
+    auto: Auto;
+    listar: () => void;
 };
 
-export const Fila: React.FC<filaProps> = ({ persona, auto }) => {
+export const Fila: React.FC<filaProps> = ({ persona, auto, listar }) => {
     return (
         <>
             {persona ? (
@@ -20,7 +21,7 @@ export const Fila: React.FC<filaProps> = ({ persona, auto }) => {
                         <p>{persona.apellido}</p>
                         <p>{persona.dni}</p>
                     </div>
-                    <ColumnaAccion key={persona!.dni} persona={persona} auto={auto}></ColumnaAccion>
+                    <ColumnaAccion key={persona!.dni} persona={persona} auto={auto} listar={listar}></ColumnaAccion>
                 </div>
             ) : (
                 <div className="filaAuto">
@@ -31,7 +32,7 @@ export const Fila: React.FC<filaProps> = ({ persona, auto }) => {
                         <p>{auto?.anio}</p>
                         <p>{auto?.patente}</p>
                     </div>
-                    <ColumnaAccion key={auto!.patente} persona={persona} auto={auto}></ColumnaAccion>
+                    <ColumnaAccion key={auto!.patente} persona={persona} auto={auto} listar={listar}></ColumnaAccion>
                 </div>
             )}
         </>

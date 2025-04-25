@@ -6,9 +6,12 @@ import { Listado } from '../Components/Listado';
 
 export const VerPersona = () => {
     const { dni } = useParams<{ dni: string }>();
+
     const [persona, setPersona] = useState<Persona | undefined>(undefined);
+
     const obtenePersonaConDni = async (dniPersona: string) => {
         const response = await buscarPersonaConDni(dniPersona);
+        console.log(response);
         setPersona(response);
     };
     //las dependencia que se agregan en [] son la que useEffect

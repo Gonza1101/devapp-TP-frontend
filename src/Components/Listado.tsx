@@ -17,8 +17,7 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos }) =>
     const setearLista = () => {
         if (listaPersonas) {
             setpersona(listaPersonas);
-        }
-        if (listaAutos) {
+        } else {
             setAutos(listaAutos);
         }
     };
@@ -31,8 +30,10 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos }) =>
         <>
             <div className="listado">
                 {persona
-                    ? persona.map((p) => <Fila key={persona.length} persona={p} auto={undefined} />)
-                    : autos?.map((a) => <Fila key={autos.length} persona={undefined} auto={a} />)}
+                    ? persona.map((p) => (
+                          <Fila key={persona.length} persona={p} auto={undefined} listar={setearLista} />
+                      ))
+                    : autos?.map((a) => <Fila key={autos.length} persona={undefined} auto={a} listar={setearLista} />)}
             </div>
         </>
     );

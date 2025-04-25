@@ -1,17 +1,21 @@
+import '../CSS/popup.css';
 type borrarProps = {
-    borrar: () => void;
+    eliminar: () => void;
+    cancelar: () => void;
 };
-export const BorrarComponente: React.FC<borrarProps> = ({ borrar }) => {
-    const handlerBorrar = () => {
-        borrar();
-    };
+export const BorrarComponente: React.FC<borrarProps> = ({ eliminar, cancelar }) => {
     return (
         <>
-            <div className="popUp">
-                <button onClick={handlerBorrar} className="confirmar">
-                    Confirmar
-                </button>
-                <button className="cancelar">Cancelar</button>
+            <div className="popupcontenido">
+                <p>¿Estás seguro de que quieres borrar esta persona?</p>
+                <div className="popupbotones">
+                    <button onClick={eliminar} id="confirmarBorrar">
+                        Confirmar
+                    </button>
+                    <button onClick={cancelar} id="cancelarBorrar">
+                        Cancelar
+                    </button>
+                </div>
             </div>
         </>
     );

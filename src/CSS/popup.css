@@ -1,0 +1,74 @@
+/* Estilos para el fondo oscuro del popup */
+.popupborrar {
+    position: fixed; /* Para que se quede en la ventana del navegador */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    opacity: 0%; /* Inicialmente oculto */
+    visibility: hidden; /* Inicialmente oculto */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* Estilos para el contenido del popup (la caja blanca) */
+  .popupcontenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+    max-width: 90%;
+  }
+  
+  .popupcontenido p {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el contenedor de los botones */
+  .popupbotones {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  /* Estilos para los botones de Confirmar y Cancelar */
+  .popupbotones button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  #confirmarBorrar {
+    background-color: #dc3545; /* Rojo para confirmar borrar */
+    color: white;
+  }
+  
+  #confirmarBorrar:hover {
+    background-color: #c82333;
+  }
+  
+  #cancelarBorrar {
+    background-color: #6c757d; /* Gris para cancelar */
+    color: white;
+  }
+  
+  #cancelarBorrar:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Clase para mostrar el popup (se togglea con JavaScript) */
+  .popupborrar.mostrar {
+    opacity: 1;
+    visibility: visible;
+  }
