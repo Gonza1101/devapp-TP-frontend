@@ -5,34 +5,48 @@ import { ColumnaAccion } from './ColumnaAccion';
 import '../CSS/listadoFila.css';
 
 type filaProps = {
-    persona: Persona;
-    auto: Auto;
-    listar: () => void;
+    entidadTipo: string;
+    entidad: Persona & Auto;
+    ver: () => void;
+    editar: () => void;
+    eliminar: () => void;
 };
 
-export const Fila: React.FC<filaProps> = ({ persona, auto, listar }) => {
+export const Fila: React.FC<filaProps> = ({ entidadTipo, entidad, ver, editar, eliminar }) => {
     return (
         <>
-            {persona ? (
+            {entidadTipo === 'persona' ? (
                 <div className="filaPersona">
                     <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="alternatetext" />
                     <div className="filaCuerpo">
-                        <p>{persona.nombre}</p>
-                        <p>{persona.apellido}</p>
-                        <p>{persona.dni}</p>
+                        <p>{entidad.nombre}</p>
+                        <p>{entidad.apellido}</p>
+                        <p>{entidad.dni}</p>
                     </div>
-                    <ColumnaAccion key={persona!.dni} persona={persona} auto={auto} listar={listar}></ColumnaAccion>
+                    <ColumnaAccion
+                        key={entidad.id}
+                        tipo={entidadTipo}
+                        accionVer={ver}
+                        accionEditar={editar}
+                        accionEliminar={eliminar}
+                    ></ColumnaAccion>
                 </div>
             ) : (
                 <div className="filaAuto">
                     <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
                     <div className="filaCuerpo">
-                        <p> {auto?.marca}</p>
-                        <p>{auto?.modelo}</p>
-                        <p>{auto?.anio}</p>
-                        <p>{auto?.patente}</p>
+                        <p> {entidad.marca}</p>
+                        <p>{entidad.modelo}</p>
+                        <p>{entidad.anio}</p>
+                        <p>{entidad.patente}</p>
                     </div>
-                    <ColumnaAccion key={auto!.patente} persona={persona} auto={auto} listar={listar}></ColumnaAccion>
+                    <ColumnaAccion
+                        key={entidad.id}
+                        tipo={entidadTipo}
+                        accionVer={ver}
+                        accionEditar={editar}
+                        accionEliminar={eliminar}
+                    ></ColumnaAccion>
                 </div>
             )}
         </>

@@ -4,6 +4,7 @@ import { AutoPage, PersonaPage } from '../Pages';
 import { AgregarPersona } from '../Pages/PersonasAgregar';
 import { VerPersona } from '../Pages/PersonasVer';
 import { EditarPersona } from '../Pages/PersonaEditar';
+import { AutoVer } from '../Pages/AutoVer';
 
 export const AppRouter = createBrowserRouter(
     createRoutesFromElements(
@@ -14,6 +15,7 @@ export const AppRouter = createBrowserRouter(
             <Route path="/persona/edit/:idPersona" element={<EditarPersona />} />
             <Route path="/persona/:dni" element={<VerPersona />} />
             <Route path="/autos" element={<AutoPage />} />
+            <Route path="/auto/:miPatente" element={<AutoVer />} />
         </>
     )
 );

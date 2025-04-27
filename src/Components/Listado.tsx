@@ -7,9 +7,10 @@ import '../CSS/listadoFila.css';
 type listarProps = {
     listaPersonas: Persona[] | undefined;
     listaAutos: Auto[] | undefined;
+    listado: () => void;
 };
 
-export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos }) => {
+export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos, listado }) => {
     const [persona, setpersona] = useState<Persona[] | undefined>(undefined);
 
     const [autos, setAutos] = useState<Auto[] | undefined>(undefined);
@@ -17,8 +18,9 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos }) =>
     const setearLista = () => {
         if (listaPersonas) {
             setpersona(listaPersonas);
-        } else {
-            setAutos(listaAutos);
+        }
+        if (listaAutos) {
+            setAutos(listaAutos); //seteo la lista solo con una lista de auto.
         }
     };
 
@@ -30,10 +32,8 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos }) =>
         <>
             <div className="listado">
                 {persona
-                    ? persona.map((p) => (
-                          <Fila key={persona.length} persona={p} auto={undefined} listar={setearLista} />
-                      ))
-                    : autos?.map((a) => <Fila key={autos.length} persona={undefined} auto={a} listar={setearLista} />)}
+                    ? persona.map((p) => <Fila key={persona.length} persona={p} auto={undefined} listar={listado} />)
+                    : autos?.map((a) => <Fila key={autos.length} persona={undefined} auto={a} listar={listado} />)}
             </div>
         </>
     );

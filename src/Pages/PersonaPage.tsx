@@ -10,10 +10,9 @@ export const PersonaPage = () => {
     const navegarA = useNavigate();
 
     const obtenerLista = async () => {
-        const personas = await listarPersonas();
+        const personas: Persona[] = await listarPersonas();
         setLista(personas);
     };
-
     const agregarPersonaNueva = () => {
         navegarA('/persona/add');
     };
@@ -26,7 +25,7 @@ export const PersonaPage = () => {
             <div className="inicio">
                 <div className="listado">
                     <p>PERSONA</p>
-                    <Listado key={lista.length} listaPersonas={lista} listaAutos={undefined} />
+                    <Listado key={lista.length} listaPersonas={lista} listaAutos={undefined} listado={obtenerLista} />
                     <button className="agregarPersona" onClick={agregarPersonaNueva}>
                         🙋‍♂️ Agregar Persona 🙋‍♀️
                     </button>
