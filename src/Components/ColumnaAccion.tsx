@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BorrarComponente } from './BorrarComponente';
 import '../CSS/botenesAccion.css';
 import '../CSS/popup.css';
 
 type accionProps = {
     tipo: string;
-    accionVer: () => void;
-    accionEditar: () => void;
-    accionEliminar: () => void;
+    botonVer: () => void;
+    botonEditar: () => void;
+    botonEliminar: () => void;
 };
-export const ColumnaAccion: React.FC<accionProps> = ({ tipo, accionVer, accionEditar, accionEliminar }) => {
+export const ColumnaAccion: React.FC<accionProps> = ({ tipo, botonVer, botonEditar, botonEliminar }) => {
     const [clase, setClase] = useState<string>('popupborrar');
 
-    const handlerVer = () => {
-        accionVer();
-    };
-    const handlerEditar = () => {
-        accionEditar();
-    };
     const handlerBorrar = () => {
         setClase('popupborrar mostrar');
     };
@@ -25,19 +19,14 @@ export const ColumnaAccion: React.FC<accionProps> = ({ tipo, accionVer, accionEd
     const handlerCancelar = () => {
         setClase('popupborrar');
     };
-    const handlerEliminar = () => {
-        accionEliminar();
-    };
-
-    useEffect(() => {}, []);
 
     return (
         <>
             <div className="botonesAccion">
-                <button className="ver" onClick={handlerVer}>
+                <button className="ver" onClick={botonVer}>
                     🔍
                 </button>
-                <button className="editar" onClick={handlerEditar}>
+                <button className="editar" onClick={botonEditar}>
                     📝
                 </button>
                 <button className="borrar" onClick={handlerBorrar}>
@@ -45,7 +34,7 @@ export const ColumnaAccion: React.FC<accionProps> = ({ tipo, accionVer, accionEd
                 </button>
             </div>
             <div id="popupBorrar" className={clase}>
-                <BorrarComponente key={tipo} eliminar={handlerEliminar} cancelar={handlerCancelar}></BorrarComponente>
+                <BorrarComponente key={tipo} eliminar={botonEliminar} cancelar={handlerCancelar}></BorrarComponente>
             </div>
         </>
     );

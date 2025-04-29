@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import Auto from '../Model/Auto';
 import { findAutoWithPatente } from '../API/Auto/buscarAuto';
 import { ColumnaAccion } from '../Components/ColumnaAccion';
-import { Fila } from '../Components/Fila';
 
 export const AutoVer = () => {
     const { miPatente } = useParams<{ miPatente: string }>();
@@ -12,12 +11,11 @@ export const AutoVer = () => {
     const obtenerAutoConPatente = async (patente: string) => {
         const response = await findAutoWithPatente(patente);
         setAuto(response);
+        console.log(response);
     };
 
     useEffect(() => {
         obtenerAutoConPatente(miPatente!);
-        console.log('AUTO VER');
-        console.log(auto!.id);
     }, []);
 
     return (
@@ -36,7 +34,6 @@ export const AutoVer = () => {
                         <p>Patente: {auto?.patente}</p>
                         {/* <ColumnaAccion key={auto!.patente} persona={persona} auto={auto} listar={actualizarLista}></ColumnaAccion> */}
                     </div>
-                    {/* <Fila key={auto.id} auto={auto!} persona={undefined} listar={actualizarLista}></Fila> */}
                 </div>
             </div>
         </>

@@ -3,6 +3,7 @@ import { listarPersonas } from '../API/Persona/listarPersonas';
 import Persona from '../Model/Persona';
 import { Listado } from '../Components/Listado';
 import { useNavigate } from 'react-router-dom';
+import { deletePersona } from '../API/Persona/deletePersona';
 
 export const PersonaPage = () => {
     const [lista, setLista] = useState<Persona[]>([]);
@@ -12,6 +13,19 @@ export const PersonaPage = () => {
     const obtenerLista = async () => {
         const personas: Persona[] = await listarPersonas();
         setLista(personas);
+    };
+    const verPersona = (id: string) => {
+        console.log('Desde personas VER');
+        navegarA(`/persona/${id}`);
+    };
+    const editarPersona = (id: string) => {
+        console.log('Desde personas EDITAR');
+        navegarA(`/persona/edit/${id}`);
+    };
+    const eliminarPersona = (id: string) => {
+        console.log('Desde personas ELIMINAR');
+        deletePersona(id);
+        obtenerLista();
     };
     const agregarPersonaNueva = () => {
         navegarA('/persona/add');
@@ -25,7 +39,14 @@ export const PersonaPage = () => {
             <div className="inicio">
                 <div className="listado">
                     <p>PERSONA</p>
-                    <Listado key={lista.length} listaPersonas={lista} listaAutos={undefined} listado={obtenerLista} />
+                    <Listado
+                        key={lista.length}
+                        listaPersonas={lista}
+                        listaAutos={undefined}
+                        ver={verPersona}
+                        editar={editarPersona}
+                        eliminar={eliminarPersona}
+                    />
                     <button className="agregarPersona" onClick={agregarPersonaNueva}>
                         🙋‍♂️ Agregar Persona 🙋‍♀️
                     </button>

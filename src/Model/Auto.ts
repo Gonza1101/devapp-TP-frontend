@@ -1,7 +1,7 @@
 import { Entidad } from './entidad';
 
 interface Auto extends Entidad {
-    id: string;
+    id?: string;
     idDueño: string;
     marca: string;
     modelo: string;

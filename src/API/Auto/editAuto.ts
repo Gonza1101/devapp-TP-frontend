@@ -1,8 +1,8 @@
 import { baseURL } from '../BaseURL';
 import Auto from '../../Model/Auto';
-export const editAuto = async (patenteAuto: string, datosAuto: Auto) => {
+export const editAuto = async (idAuto: string, datosAuto: Auto) => {
     const response = await baseURL.put(
-        `/auto/${patenteAuto}`,
+        `/auto/${idAuto}`,
         JSON.stringify({
             id: datosAuto.id,
             dniDueño: datosAuto.idDueño,

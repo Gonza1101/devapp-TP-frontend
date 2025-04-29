@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { buscarPersonaConDni } from '../API/Persona/buscarPersona';
 import Persona from '../Model/Persona';
-import { Listado } from '../Components/Listado';
+import { Listado } from './Listado';
 
-export const VerPersona = () => {
+export const PersonaDetalle = () => {
     const { dni } = useParams<{ dni: string }>();
     const [persona, setPersona] = useState<Persona>();
     const navegarA = useNavigate();
@@ -13,10 +13,9 @@ export const VerPersona = () => {
         const response = await buscarPersonaConDni(dniPersona);
         setPersona(response);
     };
-    const agregarAuto = () => {};
-    const ver = (id: string) => {
+    const ver = () => {
         console.log('Estoy en VER');
-        navegarA(`/auto/${id}}`);
+        navegarA(`/persona/${persona?.dni}`);
     };
     const editar = () => {};
     const eliminar = () => {};
@@ -29,18 +28,18 @@ export const VerPersona = () => {
     return (
         <>
             <div className="inicio">
-                <div className="listado">
-                    <div className="detalle">
-                        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="" />
-                        <div className="detalleDato">
-                            <p>Nombre: {persona?.nombre}</p>
-                            <p>Apellido: {persona?.apellido}</p>
-                            <p>Dni: {persona?.dni}</p>
-                            {/* <h3>Fecha de Nacimiento: {persona.fechaNacimiento}</h3> */}
-                            <p>Genero: {persona?.genero}</p>
-                            <p>Donante: {persona?.esDonante}</p>
-                        </div>
+                <div className="detalle">
+                    <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="" />
+                    <div className="detalleDato">
+                        <p>Nombre: {persona?.nombre}</p>
+                        <p>Apellido: {persona?.apellido}</p>
+                        <p>Dni: {persona?.dni}</p>
+                        {/* <h3>Fecha de Nacimiento: {persona.fechaNacimiento}</h3> */}
+                        <p>Genero: {persona?.genero}</p>
+                        <p>Donante: {persona?.esDonante}</p>
                     </div>
+                </div>
+                <div className="listado">
                     <Listado
                         key={persona?.dni}
                         listaAutos={persona?.autos}
@@ -49,9 +48,6 @@ export const VerPersona = () => {
                         editar={editar}
                         eliminar={eliminar}
                     ></Listado>
-                    <button className="agregarPersona" onClick={agregarAuto}>
-                        🚗 Agregar Auto 🚙
-                    </button>
                 </div>
             </div>
         </>

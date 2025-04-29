@@ -6,13 +6,13 @@ import '../CSS/listadoFila.css';
 
 type filaProps = {
     entidadTipo: string;
-    entidad: Persona & Auto;
-    ver: () => void;
-    editar: () => void;
-    eliminar: () => void;
+    entidad: Persona | Auto;
+    accionVer: () => void;
+    accionEditar: () => void;
+    accionEliminar: () => void;
 };
 
-export const Fila: React.FC<filaProps> = ({ entidadTipo, entidad, ver, editar, eliminar }) => {
+export const Fila: React.FC<filaProps> = ({ entidadTipo, entidad, accionVer, accionEditar, accionEliminar }) => {
     return (
         <>
             {entidadTipo === 'persona' ? (
@@ -26,9 +26,9 @@ export const Fila: React.FC<filaProps> = ({ entidadTipo, entidad, ver, editar, e
                     <ColumnaAccion
                         key={entidad.id}
                         tipo={entidadTipo}
-                        accionVer={ver}
-                        accionEditar={editar}
-                        accionEliminar={eliminar}
+                        botonVer={accionVer}
+                        botonEditar={accionEditar}
+                        botonEliminar={accionEliminar}
                     ></ColumnaAccion>
                 </div>
             ) : (
@@ -43,9 +43,9 @@ export const Fila: React.FC<filaProps> = ({ entidadTipo, entidad, ver, editar, e
                     <ColumnaAccion
                         key={entidad.id}
                         tipo={entidadTipo}
-                        accionVer={ver}
-                        accionEditar={editar}
-                        accionEliminar={eliminar}
+                        botonVer={accionVer}
+                        botonEditar={accionEditar}
+                        botonEliminar={accionEliminar}
                     ></ColumnaAccion>
                 </div>
             )}
