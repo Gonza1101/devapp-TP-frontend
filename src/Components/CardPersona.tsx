@@ -9,9 +9,7 @@ type cardPersonaProps = {
 };
 export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, accionEditar, accionEliminar }) => {
     const botonVer = () => {
-        if (persona) {
-            accionVer(persona.dni!);
-        }
+        accionVer(persona.dni!);
     };
     const botonEditar = () => {
         accionEditar(persona.id!);
@@ -30,6 +28,9 @@ export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, ac
                 </div>
                 <ColumnaAccion
                     key={persona.id}
+                    ver={true}
+                    editar={true}
+                    eliminar={true}
                     tipo={'persona'}
                     botonVer={botonVer}
                     botonEditar={botonEditar}

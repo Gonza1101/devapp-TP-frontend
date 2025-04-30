@@ -5,9 +5,9 @@ interface Auto extends Entidad {
     idDueño: string;
     marca: string;
     modelo: string;
-    anio: number;
+    anio: string;
     color: string;
-    numeroDeChasis: string;
+    numeroChasis: string;
     motor: string;
     patente: string;
 }

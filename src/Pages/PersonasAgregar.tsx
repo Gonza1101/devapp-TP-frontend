@@ -1,5 +1,4 @@
 import { addPerson } from '../API/Persona/agregarPersona';
-import '../CSS/formulario.css';
 import Persona from '../Model/Persona';
 import { useRef } from 'react';
 

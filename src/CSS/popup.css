@@ -1,5 +1,5 @@
 /* Estilos para el fondo oscuro del popup */
-.popupborrar {
+.popup {
     position: fixed; /* Para que se quede en la ventana del navegador */
     top: 0;
     left: 0;
@@ -68,7 +68,7 @@
   }
   
   /* Clase para mostrar el popup (se togglea con JavaScript) */
-  .popupborrar.mostrar {
+  .popup.mostrar {
     opacity: 1;
     visibility: visible;
   }

@@ -1,40 +1,49 @@
 import React, { useState } from 'react';
-import { BorrarComponente } from './BorrarComponente';
+import { BotonesPopUp } from './popUpBorrar';
 import '../CSS/botenesAccion.css';
 import '../CSS/popup.css';
 
 type accionProps = {
     tipo: string;
+    ver: boolean;
+    editar: boolean;
+    eliminar: boolean;
     botonVer: () => void;
     botonEditar: () => void;
     botonEliminar: () => void;
 };
-export const ColumnaAccion: React.FC<accionProps> = ({ tipo, botonVer, botonEditar, botonEliminar }) => {
-    const [clase, setClase] = useState<string>('popupborrar');
+export const ColumnaAccion: React.FC<accionProps> = ({ tipo, ver, editar, eliminar, botonVer, botonEditar, botonEliminar }) => {
+    const [clase, setClase] = useState<string>('popup');
 
     const handlerBorrar = () => {
-        setClase('popupborrar mostrar');
+        setClase('popup mostrar');
     };
 
     const handlerCancelar = () => {
-        setClase('popupborrar');
+        setClase('popup');
     };
 
     return (
         <>
             <div className="botonesAccion">
-                <button className="ver" onClick={botonVer}>
-                    🔍
-                </button>
-                <button className="editar" onClick={botonEditar}>
-                    📝
-                </button>
-                <button className="borrar" onClick={handlerBorrar}>
-                    🔫
-                </button>
+                {ver ? (
+                    <button className="ver" onClick={botonVer}>
+                        🔍
+                    </button>
+                ) : null}
+                {editar ? (
+                    <button className="editar" onClick={botonEditar}>
+                        📝
+                    </button>
+                ) : null}
+                {eliminar ? (
+                    <button className="borrar" onClick={handlerBorrar}>
+                        🔫
+                    </button>
+                ) : null}
             </div>
-            <div id="popupBorrar" className={clase}>
-                <BorrarComponente key={tipo} eliminar={botonEliminar} cancelar={handlerCancelar}></BorrarComponente>
+            <div id="popup" className={clase}>
+                <BotonesPopUp key={tipo} tipo={tipo} eliminar={botonEliminar} cancelar={handlerCancelar}></BotonesPopUp>
             </div>
         </>
     );

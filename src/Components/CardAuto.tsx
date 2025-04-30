@@ -2,22 +2,26 @@ import Auto from '../Model/Auto';
 import { ColumnaAccion } from './ColumnaAccion';
 
 type cardAutoProps = {
+    desde: string;
     auto: Auto;
     accionVer: (id: string) => void;
     accionEditar: (id: string) => void;
     accionEliminar: (id: string) => void;
 };
-export const CardAuto: React.FC<cardAutoProps> = ({ auto, accionVer, accionEditar, accionEliminar }) => {
+export const CardAuto: React.FC<cardAutoProps> = ({ auto, desde, accionVer, accionEditar, accionEliminar }) => {
     const botonVer = () => {
-        console.log(auto.patente);
         accionVer(auto.patente);
     };
+
     const botonEditar = () => {
+        console.log(auto.id);
         accionEditar(auto.id!);
     };
+
     const botonEliminar = () => {
         accionEliminar(auto.id!);
     };
+
     return (
         <>
             <div className="filaAuto">
@@ -28,13 +32,29 @@ export const CardAuto: React.FC<cardAutoProps> = ({ auto, accionVer, accionEdita
                     <p>{auto.anio}</p>
                     <p>{auto.patente}</p>
                 </div>
-                <ColumnaAccion
-                    key={auto.id}
-                    tipo={'auto'}
-                    botonVer={botonVer}
-                    botonEditar={botonEditar}
-                    botonEliminar={botonEliminar}
-                ></ColumnaAccion>
+                {desde === 'auto' ? (
+                    <ColumnaAccion
+                        key={auto.id}
+                        ver={false}
+                        editar={false}
+                        eliminar={false}
+                        tipo={'auto'}
+                        botonVer={botonVer}
+                        botonEditar={botonEditar}
+                        botonEliminar={botonEliminar}
+                    ></ColumnaAccion>
+                ) : (
+                    <ColumnaAccion
+                        key={auto.id}
+                        ver={true}
+                        editar={true}
+                        eliminar={true}
+                        tipo={'auto'}
+                        botonVer={botonVer}
+                        botonEditar={botonEditar}
+                        botonEliminar={botonEliminar}
+                    ></ColumnaAccion>
+                )}
             </div>
         </>
     );

@@ -1,5 +1,6 @@
 import { baseURL } from '../BaseURL';
 import Auto from '../../Model/Auto';
+
 export const editAuto = async (idAuto: string, datosAuto: Auto) => {
     const response = await baseURL.put(
         `/auto/${idAuto}`,
@@ -8,11 +9,11 @@ export const editAuto = async (idAuto: string, datosAuto: Auto) => {
             dniDueño: datosAuto.idDueño,
             marca: datosAuto.marca,
             modelo: datosAuto.modelo,
-            anio: datosAuto.año,
+            anio: datosAuto.anio,
             color: datosAuto.color,
             numeroChasis: datosAuto.numeroDeChasis,
             motor: datosAuto.motor,
-            patente: datosAuto.papente
+            patente: datosAuto.patente
         }),
         {}
     );

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { buscarPersonaConDni } from '../API/Persona/buscarPersona';
 import Persona from '../Model/Persona';
-import { Listado } from '../Components/Listado';
+import { CardAuto } from '../Components/CardAuto';
 
 export const VerPersona = () => {
     const { dni } = useParams<{ dni: string }>();
@@ -15,11 +15,16 @@ export const VerPersona = () => {
     };
     const agregarAuto = () => {};
     const ver = (id: string) => {
-        console.log('Estoy en VER');
-        navegarA(`/auto/${id}}`);
+        navegarA(`/auto/${id}`);
     };
-    const editar = () => {};
-    const eliminar = () => {};
+    const editar = (idAuto: string) => {
+        console.log('Tengo que ir al Edit del Auto con ID');
+        console.log(idAuto);
+    };
+    const eliminar = (idAuto: string) => {
+        console.log('Tengo que ir al Eliminar del Auto con ID');
+        console.log(idAuto);
+    };
     //las dependencia que se agregan en [] son la que useEffect
     // debe tener en cuenta para un eventual cambio y actualizar
     useEffect(() => {
@@ -41,17 +46,21 @@ export const VerPersona = () => {
                             <p>Donante: {persona?.esDonante}</p>
                         </div>
                     </div>
-                    <Listado
-                        key={persona?.dni}
-                        listaAutos={persona?.autos}
-                        listaPersonas={undefined}
-                        ver={ver}
-                        editar={editar}
-                        eliminar={eliminar}
-                    ></Listado>
-                    <button className="agregarPersona" onClick={agregarAuto}>
-                        🚗 Agregar Auto 🚙
-                    </button>
+                    {persona?.autos!.map((a) => (
+                        <CardAuto
+                            key={a.id}
+                            desde={''}
+                            auto={a}
+                            accionVer={ver}
+                            accionEditar={editar}
+                            accionEliminar={eliminar}
+                        />
+                    ))}
+                    <div>
+                        <button className="agregarPersona" onClick={agregarAuto}>
+                            🚗 Agregar Auto 🚙
+                        </button>
+                    </div>
                 </div>
             </div>
         </>

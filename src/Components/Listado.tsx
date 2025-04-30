@@ -21,16 +21,18 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos, ver,
 
     const setearLista = () => {
         if (listaPersonas) {
+            // console.log(listaPersonas);
             setpersona(listaPersonas);
         }
         if (listaAutos) {
+            // console.log(listaAutos);
             setAutos(listaAutos); //seteo la lista solo con una lista de auto.
         }
     };
 
     useEffect(() => {
         setearLista();
-    }, []);
+    });
 
     return (
         <>
@@ -48,6 +50,7 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos, ver,
                     : autos?.map((a) => (
                           <CardAuto
                               key={a.id}
+                              desde={'auto'}
                               auto={a}
                               accionVer={ver}
                               accionEditar={editar}

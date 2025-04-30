@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Auto from '../Model/Auto';
-import { listaAuto } from '../API/Auto/listaAutos';
+import { listadoAuto } from '../API/Auto/listadoAuto';
 import { Listado } from '../Components/Listado';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,13 +10,17 @@ export const AutoPage = () => {
 
     //obtengo una lista solo de Autos.
     const obtenerLista = async () => {
-        const autos = await listaAuto();
+        const autos = await listadoAuto();
         setLista(autos);
     };
     const handlerVer = (patente: string) => {
+        console.log(patente);
         navegarA(`/auto/${patente}`);
     };
-    const handlerEditar = () => {};
+    const handlerEditar = (idAuto: string) => {
+        console.log(idAuto);
+        navegarA(`/auto/edit/${idAuto}`);
+    };
     const handlerEliminar = () => {};
 
     useEffect(() => {
