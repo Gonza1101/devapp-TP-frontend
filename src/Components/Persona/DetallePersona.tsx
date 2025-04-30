@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Persona from '../../Model/Persona';
 import { CardAuto } from '../Auto/CardAuto';
 import { useNavigate } from 'react-router-dom';
+import { personaConDni } from '../../API/Persona/buscarPersona';
+import { patchAuto } from '../../API/Auto/patchAuto';
 
 type detallePersonaProps = {
-    persona: Persona;
+    dni: string;
 };
-export const DetallePersona: React.FC<detallePersonaProps> = ({ persona }) => {
+export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
+    const [persona, setPersona] = useState<Persona>();
+
+    const personaActual = async () => {
+        const response = await personaConDni(dni);
+        setPersona(response);
+    };
+    const eliminarAuto = (idAuto: string) => {
+        patchAuto(persona?.id, idAuto);
+    };
     const navegarA = useNavigate();
     const imgPersona = `https://rickandmortyapi.com/api/character/avatar/${persona?.img}.jpeg`;
 
@@ -17,10 +28,6 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ persona }) => {
     const editar = (idAuto: string) => {
         navegarA(`/auto/edit/${idAuto}`);
     };
-    const eliminar = (idAuto: string) => {
-        console.log('Tengo que ir al Eliminar del Auto con ID');
-        console.log(idAuto);
-    };
     const esDonante = () => {
         if (persona?.esDonante) {
             return 'Si';
@@ -30,8 +37,10 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ persona }) => {
     };
     //las dependencia que se agregan en [] son la que useEffect
     // debe tener en cuenta para un eventual cambio y actualizar
-    // useEffect(() => {
-    // }, []);
+
+    useEffect(() => {
+        personaActual();
+    }, [dni]);
     return (
         <>
             <div className="inicio">
@@ -54,7 +63,7 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ persona }) => {
                             auto={a}
                             accionVer={ver}
                             accionEditar={editar}
-                            accionEliminar={eliminar}
+                            accionEliminar={eliminarAuto}
                         />
                     ))}
                 </div>

@@ -11,7 +11,7 @@ export const addAuto = async (autoNuevo: Auto) => {
             modelo: autoNuevo.modelo,
             anio: autoNuevo.anio,
             color: autoNuevo.color,
-            numeroChasis: autoNuevo.numeroDeChasis,
+            numeroChasis: autoNuevo.numeroChasis,
             motor: autoNuevo.motor,
             patente: autoNuevo.patente
         }),

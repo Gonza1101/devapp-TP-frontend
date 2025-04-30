@@ -7,7 +7,6 @@ type edicionPersona = {
     persona: Persona;
 };
 export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
-    console.log(persona?.fechaNacimiento);
     const navegarA = useNavigate();
     const inputNombreRef = useRef<HTMLInputElement>(null);
     const inputApellidRef = useRef<HTMLInputElement>(null);
@@ -69,7 +68,7 @@ export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
                         <label>{}</label>
                         <input
                             ref={inputFechaNacimientoRef}
-                            type="date"
+                            type="Date"
                             name="fecha_nacimiento"
                             defaultValue={persona?.fechaNacimiento}
                         ></input>

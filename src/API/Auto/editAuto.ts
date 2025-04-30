@@ -13,7 +13,9 @@ export const editAuto = async (idAuto: string, datosAuto: Auto) => {
             motor: datosAuto.motor,
             patente: datosAuto.patente
         }),
-        {}
+        {
+            headers: { 'Content-Type': 'applocation/json' }
+        }
     );
-    return response.data;
+    return response;
 };
