@@ -15,15 +15,12 @@ export const PersonaPage = () => {
         setLista(personas);
     };
     const verPersona = (id: string) => {
-        console.log('Desde personas VER');
         navegarA(`/persona/${id}`);
     };
     const editarPersona = (id: string) => {
-        console.log('Desde personas EDITAR');
         navegarA(`/persona/edit/${id}`);
     };
     const eliminarPersona = (id: string) => {
-        console.log('Desde personas ELIMINAR');
         deletePersona(id);
         obtenerLista();
     };

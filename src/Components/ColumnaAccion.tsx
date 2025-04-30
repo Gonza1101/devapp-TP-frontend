@@ -12,7 +12,15 @@ type accionProps = {
     botonEditar: () => void;
     botonEliminar: () => void;
 };
-export const ColumnaAccion: React.FC<accionProps> = ({ tipo, ver, editar, eliminar, botonVer, botonEditar, botonEliminar }) => {
+export const ColumnaAccion: React.FC<accionProps> = ({
+    tipo,
+    ver,
+    editar,
+    eliminar,
+    botonVer,
+    botonEditar,
+    botonEliminar
+}) => {
     const [clase, setClase] = useState<string>('popup');
 
     const handlerBorrar = () => {

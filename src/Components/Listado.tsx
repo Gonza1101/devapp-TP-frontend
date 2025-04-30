@@ -3,8 +3,8 @@ import Auto from '../Model/Auto';
 import Persona from '../Model/Persona';
 // import { Fila } from './Fila';
 import '../CSS/listadoFila.css';
-import { CardPersona } from './CardPersona';
-import { CardAuto } from './CardAuto';
+import { CardPersona } from './Persona/CardPersona';
+import { CardAuto } from './Auto/CardAuto';
 
 type listarProps = {
     listaPersonas: Persona[] | undefined;

@@ -2,15 +2,18 @@ import { baseURL } from '../BaseURL';
 import Persona from '../../Model/Persona';
 
 export const addPerson = async (personaNueva: Persona) => {
+    console.log(personaNueva.fechaNacimiento!.replace('-', ','));
+    const nac = new Date(personaNueva.fechaNacimiento!.replace('-', ','));
     const response = await baseURL.post(
         '/persona',
         JSON.stringify({
             nombre: personaNueva.nombre,
             apellido: personaNueva.apellido,
             dni: personaNueva.dni,
-            fechaDeNacimiento: personaNueva.fechaNacimiento,
+            fechaNacimiento: nac,
             genero: personaNueva.genero,
-            esDonante: personaNueva.esDonante
+            esDonante: personaNueva.esDonante,
+            img: Math.floor(Math.random() * 100)
         }),
         {
             headers: { 'Content-Type': 'application/json' }
@@ -18,22 +21,3 @@ export const addPerson = async (personaNueva: Persona) => {
     );
     return response.data;
 };
-
-// export const addPerson = async () => {
-//     const response = await baseURL.post(
-//         '/persona',
-//         JSON.stringify({
-//             nombre: 'Bruno',
-//             apellido: 'Wayne',
-//             dni: '11222333',
-//             fechaDeNacimiento: '1932-4-7',
-//             genero: 'masculino',
-//             esDonante: 'true',
-//             auto: []
-//         }),
-//         {
-//             headers: { 'Content-Type': 'application/json' }
-//         }
-//     );
-//     return response.data;
-// };

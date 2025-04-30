@@ -1,14 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { autoConId } from '../API/Auto/autoConId';
-import { editAuto } from '../API/Auto/editAuto';
-import Auto from '../Model/Auto';
+import { autoConId } from '../../API/Auto/autoConId';
+import { editAuto } from '../../API/Auto/editAuto';
+import Auto from '../../Model/Auto';
 
-export const AutoEditar = () => {
-    const { idAuto } = useParams<{ idAuto: string }>();
-    const [auto, setAuto] = useState<Auto | undefined>(undefined);
+type edicionAuto = {
+    auto: Auto;
+};
+export const EdicionAuto: React.FC<edicionAuto> = ({ auto }) => {
     const navegarA = useNavigate();
-
     const inputDniDuenioRef = useRef<HTMLInputElement>(null);
     const inputMarcaRef = useRef<HTMLInputElement>(null);
     const inputModeloRef = useRef<HTMLInputElement>(null);
@@ -48,7 +48,7 @@ export const AutoEditar = () => {
             motor: inputMotorRef.current!.value,
             patente: inputPatenteRef.current!.value
         };
-        const rta = await editAuto(auto.id, autoEditado);
+        const rta = await editAuto(auto.id!, autoEditado);
         if (rta === 200) {
             navegarA('/autos');
         } else {
@@ -72,17 +72,17 @@ export const AutoEditar = () => {
                     <form className="editar">
                         <p>Marca</p>
                         <input ref={inputMarcaRef} type="text" defaultValue={auto?.marca} />
-                        <label>Modelo</label>
+                        <p>Modelo</p>
                         <input ref={inputModeloRef} type="text" defaultValue={auto?.modelo} />
-                        <label>Año</label>
+                        <p>Año</p>
                         <input ref={inputAnioRef} type="text" defaultValue={auto?.anio} />
-                        <label>Color</label>
+                        <p>Color</p>
                         <input ref={inputColorRef} type="text" value={auto?.color}></input>
-                        <label>Numero de Chasis</label>
+                        <p>Numero de Chasis</p>
                         <input ref={inputNumeroChasisRef} type="text" value={auto?.numeroChasis}></input>
-                        <label>Motor</label>
+                        <p>Motor</p>
                         <input ref={inputMotorRef} type="text" value={auto?.motor}></input>
-                        <label>Numero de Chasis</label>
+                        <p>Patente</p>
                         <input ref={inputPatenteRef} type="text" value={auto?.patente}></input>
                     </form>
                     <div className="botonesAcción">

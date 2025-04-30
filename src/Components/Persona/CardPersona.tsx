@@ -1,5 +1,5 @@
-import Persona from '../Model/Persona';
-import { ColumnaAccion } from './ColumnaAccion';
+import Persona from '../../Model/Persona';
+import { ColumnaAccion } from '../ColumnaAccion';
 
 type cardPersonaProps = {
     persona: Persona;
@@ -8,6 +8,7 @@ type cardPersonaProps = {
     accionEliminar: (id: string) => void;
 };
 export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, accionEditar, accionEliminar }) => {
+    const img = `https://rickandmortyapi.com/api/character/avatar/${persona.img}.jpeg`;
     const botonVer = () => {
         accionVer(persona.dni!);
     };
@@ -20,7 +21,7 @@ export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, ac
     return (
         <>
             <div className="filaPersona">
-                <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="alternatetext" />
+                <img src={img} alt="alternatetext" />
                 <div className="filaCuerpo">
                     <p>{persona.nombre}</p>
                     <p>{persona.apellido}</p>

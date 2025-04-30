@@ -1,5 +1,5 @@
-import Auto from '../Model/Auto';
-import { ColumnaAccion } from './ColumnaAccion';
+import Auto from '../../Model/Auto';
+import { ColumnaAccion } from '../ColumnaAccion';
 
 type cardAutoProps = {
     desde: string;
@@ -9,12 +9,12 @@ type cardAutoProps = {
     accionEliminar: (id: string) => void;
 };
 export const CardAuto: React.FC<cardAutoProps> = ({ auto, desde, accionVer, accionEditar, accionEliminar }) => {
+    const img = `https://rickandmortyapi.com/api/character/avatar/${auto.img}.jpeg`;
     const botonVer = () => {
         accionVer(auto.patente);
     };
 
     const botonEditar = () => {
-        console.log(auto.id);
         accionEditar(auto.id!);
     };
 
@@ -25,7 +25,7 @@ export const CardAuto: React.FC<cardAutoProps> = ({ auto, desde, accionVer, acci
     return (
         <>
             <div className="filaAuto">
-                <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="alternatetext" />
+                <img src={img} alt="alternatetext" />
                 <div className="filaCuerpo">
                     <p> {auto.marca}</p>
                     <p>{auto.modelo}</p>
@@ -35,7 +35,7 @@ export const CardAuto: React.FC<cardAutoProps> = ({ auto, desde, accionVer, acci
                 {desde === 'auto' ? (
                     <ColumnaAccion
                         key={auto.id}
-                        ver={false}
+                        ver={true}
                         editar={false}
                         eliminar={false}
                         tipo={'auto'}

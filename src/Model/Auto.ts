@@ -10,6 +10,7 @@ interface Auto extends Entidad {
     numeroChasis: string;
     motor: string;
     patente: string;
+    img?: string;
 }
 
 export default Auto;

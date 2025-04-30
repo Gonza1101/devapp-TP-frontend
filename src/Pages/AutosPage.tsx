@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 export const AutoPage = () => {
     const [lista, setLista] = React.useState<Auto[]>([]);
     const navegarA = useNavigate();
-
-    //obtengo una lista solo de Autos.
     const obtenerLista = async () => {
         const autos = await listadoAuto();
         setLista(autos);
