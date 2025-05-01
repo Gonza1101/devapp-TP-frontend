@@ -1,43 +1,40 @@
 import { useEffect, useState } from 'react';
 import Auto from '../Model/Auto';
 import Persona from '../Model/Persona';
-// import { Fila } from './Fila';
 import '../CSS/listadoFila.css';
 import { CardPersona } from './Persona/CardPersona';
 import { CardAuto } from './Auto/CardAuto';
 
 type listarProps = {
-    listaPersonas: Persona[] | undefined;
-    listaAutos: Auto[] | undefined;
-    ver: (id: string) => void;
-    editar: (id: string) => void;
-    eliminar: (id: string) => void;
+    tipo: string;
+    listado: Persona[] | Auto[] | undefined;
+    ver: (ve: string) => void;
+    editar: (ed: string) => void;
+    eliminar: (el: string) => void;
 };
 
-export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos, ver, editar, eliminar }) => {
-    const [personas, setpersona] = useState<Persona[] | undefined>(undefined);
-
-    const [autos, setAutos] = useState<Auto[] | undefined>(undefined);
-
-    const setearLista = () => {
-        if (listaPersonas) {
-            // console.log(listaPersonas);
-            setpersona(listaPersonas);
+export const Listado: React.FC<listarProps> = ({ tipo, listado, ver, editar, eliminar }) => {
+    const [personas, setPersona] = useState<Persona[]>([]);
+    const [autos, setAutos] = useState<Auto[]>([]);
+    //Seteo el listado correspondiente según el tipo que me llegue
+    const actualizarListado = (tipo: string) => {
+        if (tipo === 'persona') {
+            setPersona(listado);
         }
-        if (listaAutos) {
-            // console.log(listaAutos);
-            setAutos(listaAutos); //seteo la lista solo con una lista de auto.
+        if (tipo === 'auto') {
+            setAutos(listado);
         }
     };
 
+    // Accion de Botones DUDAS QUE SE UTILICE ACA
     useEffect(() => {
-        setearLista();
-    });
+        actualizarListado(tipo);
+    }, [tipo, listado]);
 
     return (
         <>
             <div className="listado">
-                {personas
+                {tipo === 'persona'
                     ? personas.map((p) => (
                           <CardPersona
                               key={p.id}
@@ -47,16 +44,19 @@ export const Listado: React.FC<listarProps> = ({ listaPersonas, listaAutos, ver,
                               accionEliminar={eliminar}
                           />
                       ))
-                    : autos?.map((a) => (
+                    : null}
+                {tipo === 'auto'
+                    ? autos.map((a) => (
                           <CardAuto
                               key={a.id}
-                              desde={'auto'}
                               auto={a}
                               accionVer={ver}
                               accionEditar={editar}
                               accionEliminar={eliminar}
+                              desde={'auto'}
                           />
-                      ))}
+                      ))
+                    : null}
             </div>
         </>
     );
