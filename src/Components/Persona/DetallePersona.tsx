@@ -10,17 +10,20 @@ type detallePersonaProps = {
 };
 export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
     const [persona, setPersona] = useState<Persona>();
-
-    const personaActual = async () => {
-        const response = await personaConDni(dni);
+    const navegarA = useNavigate();
+    //Busco la Persona con el DNI pasado por parametro en URL.
+    const personaActual = async (dniPersona: string) => {
+        const response = await personaConDni(dniPersona);
         setPersona(response);
     };
-    const eliminarAuto = (idAuto: string) => {
-        patchAuto(persona?.id, idAuto);
-    };
-    const navegarA = useNavigate();
     const imgPersona = `https://rickandmortyapi.com/api/character/avatar/${persona?.img}.jpeg`;
+    //Acciones que tendran los botones sobre la lista de autos de la Persona.
 
+    const eliminarAuto = (idAuto: string) => {
+        if (idAuto !== undefined) {
+            patchAuto(persona?.id, idAuto);
+        }
+    };
     const agregarAuto = () => {};
     const ver = (id: string) => {
         navegarA(`/auto/${id}`);
@@ -39,8 +42,8 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
     // debe tener en cuenta para un eventual cambio y actualizar
 
     useEffect(() => {
-        personaActual();
-    }, [dni]);
+        personaActual(dni);
+    }, [persona]);
     return (
         <>
             <div className="inicio">

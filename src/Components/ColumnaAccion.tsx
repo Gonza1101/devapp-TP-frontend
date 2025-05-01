@@ -8,8 +8,8 @@ type accionProps = {
     ver: boolean;
     editar: boolean;
     eliminar: boolean;
-    botonVer: () => void;
-    botonEditar: () => void;
+    botonVer?: () => void;
+    botonEditar?: () => void;
     botonEliminar: () => void;
 };
 export const ColumnaAccion: React.FC<accionProps> = ({
@@ -28,6 +28,10 @@ export const ColumnaAccion: React.FC<accionProps> = ({
     };
 
     const handlerCancelar = () => {
+        setClase('popup');
+    };
+    const handlerEliminar = () => {
+        botonEliminar();
         setClase('popup');
     };
 
@@ -51,7 +55,12 @@ export const ColumnaAccion: React.FC<accionProps> = ({
                 ) : null}
             </div>
             <div id="popup" className={clase}>
-                <BotonesPopUp key={tipo} tipo={tipo} eliminar={botonEliminar} cancelar={handlerCancelar}></BotonesPopUp>
+                <BotonesPopUp
+                    key={tipo}
+                    tipo={tipo}
+                    eliminar={handlerEliminar}
+                    cancelar={handlerCancelar}
+                ></BotonesPopUp>
             </div>
         </>
     );

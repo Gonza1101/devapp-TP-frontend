@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Auto from '../../Model/Auto';
 import Persona from '../../Model/Persona';
-import { buscarPersonaConDni } from '../../API/Persona/buscarPersona';
+import { personaConDni } from '../../API/Persona/buscarPersona';
 import { ColumnaAccion } from '../ColumnaAccion';
 
 type detalleAutoProps = {
@@ -13,7 +13,7 @@ export const DetalleAuto: React.FC<detalleAutoProps> = ({ auto }) => {
     const obtenerPropietario = async () => {
         if (auto) {
             const dni = auto!.idDueño;
-            const persona = await buscarPersonaConDni(dni);
+            const persona = await ersonaConDni(dni);
             console.log(persona);
             setPropietario(persona);
         }
