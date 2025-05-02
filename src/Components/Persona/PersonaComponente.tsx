@@ -4,6 +4,7 @@ import { listarPersonas } from '../../API/Persona/listarPersonas';
 import { useNavigate } from 'react-router-dom';
 import { deletePersona } from '../../API/Persona/deletePersona';
 import { CardPersona } from './CardPersona';
+import { BotonAccion } from '../Botones/botonAccion';
 
 export const PersonaComponente = () => {
     const navegarA = useNavigate();
@@ -50,9 +51,7 @@ export const PersonaComponente = () => {
                         </div>
                     ))}
                 </div>
-                <button className="agregarPersona" onClick={agregarPersona}>
-                    🙋‍♂️ Agregar Persona 🙋‍♀️
-                </button>
+                <BotonAccion key={'agregar'} txt={'🙋‍♂️ Agregar Persona 🙋‍♀️'} clase={'agregar'} accion={agregarPersona} />
             </div>
         </>
     );

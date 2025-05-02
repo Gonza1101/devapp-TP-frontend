@@ -4,6 +4,7 @@ import { CardAuto } from '../Auto/CardAuto';
 import { useNavigate } from 'react-router-dom';
 import { personaConDni } from '../../API/Persona/buscarPersona';
 import { patchAuto } from '../../API/Auto/patchAuto';
+import { BotonAccion } from '../Botones/botonAccion';
 
 type detallePersonaProps = {
     dni: string;
@@ -60,21 +61,20 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
                 </div>
                 <div className="listado">
                     {persona?.autos!.map((a) => (
-                        <CardAuto
-                            key={a.id}
-                            desde={''}
-                            auto={a}
-                            accionVer={ver}
-                            accionEditar={editar}
-                            accionEliminar={eliminarAuto}
-                        />
+                        <div className="filaAuto">
+                            <div className="filaCuerpo">
+                                <CardAuto
+                                    key={a.id}
+                                    auto={a}
+                                    accionVer={ver}
+                                    accionEditar={editar}
+                                    accionEliminar={eliminarAuto}
+                                />
+                            </div>
+                        </div>
                     ))}
                 </div>
-                <div>
-                    <button className="agregarPersona" onClick={agregarAuto}>
-                        🚗 Agregar Auto 🚙
-                    </button>
-                </div>
+                <BotonAccion key={'agregarAuto'} txt={'🚗 Agregar Auto 🚙'} clase={'agregar'} accion={agregarAuto} />
             </div>
         </>
     );

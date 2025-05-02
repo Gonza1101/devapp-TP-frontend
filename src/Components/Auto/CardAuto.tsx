@@ -1,60 +1,53 @@
+import { useState } from 'react';
 import Auto from '../../Model/Auto';
-import { ColumnaAccion } from '../ColumnaAccion';
+import { BotonAccion } from '../Botones/botonAccion';
+import { BotonesPopUp } from '../popUpBorrar';
+import '../../CSS/botenesAccion.css';
 
 type cardAutoProps = {
-    desde: string;
     auto: Auto;
     accionVer: (id: string) => void;
     accionEditar: (id: string) => void;
     accionEliminar: (id: string) => void;
 };
-export const CardAuto: React.FC<cardAutoProps> = ({ auto, desde, accionVer, accionEditar, accionEliminar }) => {
+export const CardAuto: React.FC<cardAutoProps> = ({ auto, accionVer, accionEditar, accionEliminar }) => {
+    const [mostrar, setMostrar] = useState<string>('popup');
     const img = `https://rickandmortyapi.com/api/character/avatar/${auto.img}.jpeg`;
     const botonVer = () => {
         accionVer(auto.patente);
     };
-
     const botonEditar = () => {
         accionEditar(auto.id!);
     };
-
     const botonEliminar = () => {
         accionEliminar(auto.id!);
     };
-
+    const handlerCancelar = () => {
+        setMostrar('popup');
+    };
+    const handlerEliminar = () => {
+        accionEliminar(auto.id!);
+        setMostrar('popup');
+    };
     return (
         <>
-            <div className="filaAuto">
-                <img src={img} alt="alternatetext" />
-                <div className="filaCuerpo">
-                    <p> {auto.marca}</p>
-                    <p>{auto.modelo}</p>
-                    <p>{auto.anio}</p>
-                    <p>{auto.patente}</p>
+            <img src={img} alt="alternatetext" />
+            <p> {auto.marca}</p>
+            <p>{auto.modelo}</p>
+            <p>{auto.anio}</p>
+            <p>{auto.patente}</p>
+            <div className="botonesAccion">
+                <BotonAccion key={'ver'} txt={'🔍'} clase={'ver'} accion={botonVer} />
+                <BotonAccion key={'editar'} txt={'📝'} clase={'editar'} accion={botonEditar} />
+                <BotonAccion key={'borrar'} txt={'🔫'} clase={'borrar'} accion={botonEliminar} />
+                <div id="popup" className={mostrar}>
+                    <BotonesPopUp
+                        key={'Persona'}
+                        txt={`¿Realmente quiere eliminar este Auto`}
+                        eliminar={handlerEliminar}
+                        cancelar={handlerCancelar}
+                    ></BotonesPopUp>
                 </div>
-                {desde === 'auto' ? (
-                    <ColumnaAccion
-                        key={auto.id}
-                        ver={true}
-                        editar={false}
-                        eliminar={false}
-                        tipo={'auto'}
-                        botonVer={botonVer}
-                        botonEditar={botonEditar}
-                        botonEliminar={botonEliminar}
-                    ></ColumnaAccion>
-                ) : (
-                    <ColumnaAccion
-                        key={auto.id}
-                        ver={true}
-                        editar={true}
-                        eliminar={true}
-                        tipo={'auto'}
-                        botonVer={botonVer}
-                        botonEditar={botonEditar}
-                        botonEliminar={botonEliminar}
-                    ></ColumnaAccion>
-                )}
             </div>
         </>
     );

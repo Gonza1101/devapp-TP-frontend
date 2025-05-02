@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Persona from '../../Model/Persona';
 import { useRef } from 'react';
 import { editPersona } from '../../API/Persona/editPersona';
+import { BotonAccion } from '../Botones/botonAccion';
 
 type edicionPersona = {
     persona: Persona;
@@ -86,9 +87,12 @@ export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
                         </datalist>
                     </form>
                     <div className="botonesAccion">
-                        <button onClick={handlerEditar} className="agregarPersona">
-                            👍 Modificar
-                        </button>
+                        <BotonAccion
+                            key={'modificar'}
+                            txt={'👍 Modificar'}
+                            clase={'agregarPersona'}
+                            accion={handlerEditar}
+                        />
                     </div>
                 </div>
             </div>

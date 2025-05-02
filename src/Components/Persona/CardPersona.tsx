@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import Persona from '../../Model/Persona';
-import { ColumnaAccion } from '../ColumnaAccion';
+import { BotonAccion } from '../Botones/botonAccion';
+import { BotonesPopUp } from '../popUpBorrar';
 
 type cardPersonaProps = {
     persona: Persona;
-    accionVer?: (id: string) => void;
-    accionEditar?: (id: string) => void;
-    accionEliminar?: (id: string) => void;
+    accionVer: (id: string) => void;
+    accionEditar: (id: string) => void;
+    accionEliminar: (id: string) => void;
 };
 export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, accionEditar, accionEliminar }) => {
+    const [mostrar, setMostrar] = useState<string>('popup');
     const img = `https://rickandmortyapi.com/api/character/avatar/${persona.img}.jpeg`;
     const botonVer = () => {
         accionVer(persona.dni!);
@@ -16,7 +19,14 @@ export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, ac
         accionEditar(persona.id!);
     };
     const botonEliminar = () => {
+        setMostrar('popup mostrar');
+    };
+    const handlerCancelar = () => {
+        setMostrar('popup');
+    };
+    const handlerEliminar = () => {
         accionEliminar(persona.id!);
+        setMostrar('popup');
     };
     return (
         <>
@@ -26,17 +36,18 @@ export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, ac
                 <p>{persona.apellido}</p>
                 <p>{persona.dni}</p>
             </div>
-            <div>
-                <ColumnaAccion
-                    key={persona.id}
-                    ver={true}
-                    editar={true}
-                    eliminar={true}
-                    tipo={'persona'}
-                    botonVer={botonVer}
-                    botonEditar={botonEditar}
-                    botonEliminar={botonEliminar}
-                ></ColumnaAccion>
+            <div className="botonesAccion">
+                <BotonAccion key={'ver'} txt={'🔍'} clase={'ver'} accion={botonVer} />
+                <BotonAccion key={'editar'} txt={'📝'} clase={'editar'} accion={botonEditar} />
+                <BotonAccion key={'borrar'} txt={'🔫'} clase={'borrar'} accion={botonEliminar} />
+                <div id="popup" className={mostrar}>
+                    <BotonesPopUp
+                        key={'Persona'}
+                        txt={`¿Realmente quiere eliminar a ${persona.nombre}`}
+                        eliminar={handlerEliminar}
+                        cancelar={handlerCancelar}
+                    ></BotonesPopUp>
+                </div>
             </div>
         </>
     );

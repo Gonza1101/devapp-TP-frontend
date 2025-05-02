@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { addPerson } from '../../API/Persona/agregarPersona';
 import Persona from '../../Model/Persona';
 import { useRef } from 'react';
+import { BotonAccion } from '../../Components/Botones/botonAccion';
 
 export const AgregarPersona = () => {
     const navegarA = useNavigate();
@@ -67,9 +68,12 @@ export const AgregarPersona = () => {
                         </datalist>
                     </form>
                     <div className="botonesAccion">
-                        <button onClick={handlerAgregar} className="agregarPersona">
-                            👍 Agregar
-                        </button>
+                        <BotonAccion
+                            key={'agregar'}
+                            txt={'👍 Agregar'}
+                            clase={'agregarPersona'}
+                            accion={handlerAgregar}
+                        />
                     </div>
                 </div>
             </div>

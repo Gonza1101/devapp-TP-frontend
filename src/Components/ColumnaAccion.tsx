@@ -21,7 +21,7 @@ export const ColumnaAccion: React.FC<accionProps> = ({
     botonEditar,
     botonEliminar
 }) => {
-    const [clase, setClase] = useState<string>('popup');
+    const [popup, setClase] = useState<string>('popup');
 
     const handlerBorrar = () => {
         setClase('popup mostrar');

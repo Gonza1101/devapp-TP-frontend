@@ -5,7 +5,7 @@
     margin-left: auto; /* Si no usas justify-content: flex-end, esto también puede empujar los botones a la derecha */
   }
 
-.agregarPersona {
+.agregar{
     font-size: 25px;
     color: white;
     /* width: 20dvw;
@@ -25,7 +25,7 @@
     transition: background-color 0.3s ease;
     margin-top: 20px; /* Espacio superior para separarlo del listado */
 }
-.agregarPersona:hover{
+.agregar:hover{
     background-color: #3e6341;
 }
 

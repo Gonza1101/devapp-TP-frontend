@@ -3,6 +3,7 @@ import { listadoAuto } from '../../API/Auto/listadoAuto';
 import Auto from '../../Model/Auto';
 import { useNavigate } from 'react-router-dom';
 import { CardAuto } from './CardAuto';
+import '../../CSS/listadoFila.css';
 
 export const AutoComponente = () => {
     const navegarA = useNavigate();
@@ -29,14 +30,15 @@ export const AutoComponente = () => {
                 <div className="listado">
                     {autos.map((a) => (
                         <div className="filaAuto">
-                            <CardAuto
-                                key={a.id}
-                                auto={a}
-                                desde={'auto'}
-                                accionVer={ver}
-                                accionEditar={editar}
-                                accionEliminar={eliminar}
-                            />
+                            <div className="filaCuerpo">
+                                <CardAuto
+                                    key={a.id}
+                                    auto={a}
+                                    accionVer={ver}
+                                    accionEditar={editar}
+                                    accionEliminar={eliminar}
+                                />
+                            </div>
                         </div>
                     ))}
                 </div>
