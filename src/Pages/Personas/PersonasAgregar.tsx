@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { addPerson } from '../API/Persona/agregarPersona';
-import Persona from '../Model/Persona';
+import { addPerson } from '../../API/Persona/agregarPersona';
+import Persona from '../../Model/Persona';
 import { useRef } from 'react';
 
 export const AgregarPersona = () => {

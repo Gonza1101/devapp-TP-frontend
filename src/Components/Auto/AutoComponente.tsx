@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { listadoAuto } from '../../API/Auto/listadoAuto';
 import Auto from '../../Model/Auto';
 import { useNavigate } from 'react-router-dom';
-import { Listado } from '../Listado';
+import { CardAuto } from './CardAuto';
 
 export const AutoComponente = () => {
     const navegarA = useNavigate();
@@ -24,13 +24,21 @@ export const AutoComponente = () => {
     }, [autos]);
     return (
         <>
-            <div className="inicio">
+            <div className="listado">
+                <p>AUTOS</p>
                 <div className="listado">
-                    <p>AUTO</p>
-                    <Listado key={'auto'} tipo={'auto'} listado={autos} ver={ver} editar={editar} eliminar={eliminar} />
-                    {/* <button className="agregarPersona" onClick={agregarPersona}>
-                        🙋‍♂️ Agregar Persona 🙋‍♀️
-                    </button> */}
+                    {autos.map((a) => (
+                        <div className="filaAuto">
+                            <CardAuto
+                                key={a.id}
+                                auto={a}
+                                desde={'auto'}
+                                accionVer={ver}
+                                accionEditar={editar}
+                                accionEliminar={eliminar}
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
         </>

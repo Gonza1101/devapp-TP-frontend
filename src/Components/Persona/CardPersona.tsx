@@ -3,9 +3,9 @@ import { ColumnaAccion } from '../ColumnaAccion';
 
 type cardPersonaProps = {
     persona: Persona;
-    accionVer: (id: string) => void;
-    accionEditar: (id: string) => void;
-    accionEliminar: (id: string) => void;
+    accionVer?: (id: string) => void;
+    accionEditar?: (id: string) => void;
+    accionEliminar?: (id: string) => void;
 };
 export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, accionEditar, accionEliminar }) => {
     const img = `https://rickandmortyapi.com/api/character/avatar/${persona.img}.jpeg`;
@@ -20,13 +20,13 @@ export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, ac
     };
     return (
         <>
-            <div className="filaPersona">
-                <img src={img} alt="alternatetext" />
-                <div className="filaCuerpo">
-                    <p>{persona.nombre}</p>
-                    <p>{persona.apellido}</p>
-                    <p>{persona.dni}</p>
-                </div>
+            <img src={img} alt="alternatetext" />
+            <div className="filaCuerpo">
+                <p>{persona.nombre}</p>
+                <p>{persona.apellido}</p>
+                <p>{persona.dni}</p>
+            </div>
+            <div>
                 <ColumnaAccion
                     key={persona.id}
                     ver={true}

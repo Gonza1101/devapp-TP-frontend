@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { findAutoWithPatente } from '../API/Auto/buscarAuto';
-import { DetalleAuto } from '../Components/Auto/DetalleAuto';
-import Auto from '../Model/Auto';
+import { findAutoWithPatente } from '../../API/Auto/buscarAuto';
+import { DetalleAuto } from '../../Components/Auto/DetalleAuto';
+import Auto from '../../Model/Auto';
 
 export const AutoVer = () => {
     const { miPatente } = useParams<{ miPatente: string }>();

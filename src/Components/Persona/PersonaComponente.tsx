@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Listado } from '../Listado';
 import Persona from '../../Model/Persona';
 import { listarPersonas } from '../../API/Persona/listarPersonas';
 import { useNavigate } from 'react-router-dom';
 import { deletePersona } from '../../API/Persona/deletePersona';
+import { CardPersona } from './CardPersona';
 
 export const PersonaComponente = () => {
     const navegarA = useNavigate();
@@ -35,21 +35,24 @@ export const PersonaComponente = () => {
     }, [personas]);
     return (
         <>
-            <div className="inicio">
+            <div className="listado">
+                <p>PERSONA</p>
                 <div className="listado">
-                    <p>PERSONA</p>
-                    <Listado
-                        key={'persona'}
-                        tipo={'persona'}
-                        listado={personas}
-                        ver={ver}
-                        editar={editar}
-                        eliminar={eliminar}
-                    />
-                    <button className="agregarPersona" onClick={agregarPersona}>
-                        🙋‍♂️ Agregar Persona 🙋‍♀️
-                    </button>
+                    {personas.map((p) => (
+                        <div className="filaPersona">
+                            <CardPersona
+                                key={p.id}
+                                persona={p}
+                                accionVer={ver}
+                                accionEditar={editar}
+                                accionEliminar={eliminar}
+                            />
+                        </div>
+                    ))}
                 </div>
+                <button className="agregarPersona" onClick={agregarPersona}>
+                    🙋‍♂️ Agregar Persona 🙋‍♀️
+                </button>
             </div>
         </>
     );

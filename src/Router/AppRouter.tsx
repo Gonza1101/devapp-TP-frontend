@@ -1,12 +1,12 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { InicioPage } from '../Pages/InicioPage';
-import { PersonaPage } from '../Pages/PersonaPage';
-import { AutoPage } from '../Pages/AutosPage';
-import { AgregarPersona } from '../Pages/PersonasAgregar';
-import { VerPersona } from '../Pages/PersonasVer';
-import { EditarPersona } from '../Pages/PersonaEditar';
-import { AutoVer } from '../Pages/AutoVer';
-import { AutoEditar } from '../Pages/AutoEditar';
+import { PersonaPage } from '../Pages/Personas/PersonaPage';
+import { AutoPage } from '../Pages/Autos/AutosPage';
+import { AgregarPersona } from '../Pages/Personas/PersonasAgregar';
+import { VerPersona } from '../Pages/Personas/PersonasVer';
+import { EditarPersona } from '../Pages/Personas/PersonaEditar';
+import { AutoVer } from '../Pages/Autos/AutoVer';
+import { AutoEditar } from '../Pages/Autos/AutoEditar';
 
 export const AppRouter = createBrowserRouter(
     createRoutesFromElements(

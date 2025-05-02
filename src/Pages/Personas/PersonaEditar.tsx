@@ -1,8 +1,7 @@
-import '../CSS/formulario.css';
-import Persona from '../Model/Persona';
+import Persona from '../../Model/Persona';
 import { useEffect, useState } from 'react';
-import { personaConId } from '../API/Persona/persocaConId';
-import { EdicionPersona } from '../Components/Persona/EdicionPersona';
+import { personaConId } from '../../API/Persona/persocaConId';
+import { EdicionPersona } from '../../Components/Persona/EdicionPersona';
 import { useParams } from 'react-router-dom';
 
 export const EditarPersona = () => {

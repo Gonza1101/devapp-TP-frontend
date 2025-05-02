@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { autoConId } from '../API/Auto/autoConId';
-import Auto from '../Model/Auto';
-import { EdicionAuto } from '../Components/Auto/EdicionAuto';
+import { autoConId } from '../../API/Auto/autoConId';
+import Auto from '../../Model/Auto';
+import { EdicionAuto } from '../../Components/Auto/EdicionAuto';
 
 export const AutoEditar = () => {
     const { idAuto } = useParams<{ idAuto: string }>();
