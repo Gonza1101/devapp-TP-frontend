@@ -4,7 +4,7 @@ import { listarPersonas } from '../../API/Persona/listarPersonas';
 import { useNavigate } from 'react-router-dom';
 import { deletePersona } from '../../API/Persona/deletePersona';
 import { CardPersona } from './CardPersona';
-import { BotonAccion } from '../Botones/botonAccion';
+import { BotonAccion } from '../Botones/BotonAccion';
 
 export const PersonaComponente = () => {
     const navegarA = useNavigate();
@@ -36,23 +36,21 @@ export const PersonaComponente = () => {
     }, [personas]);
     return (
         <>
+            <p>LISTADO DE PERSONAS</p>
             <div className="listado">
-                <p>PERSONA</p>
-                <div className="listado">
-                    {personas.map((p) => (
-                        <div className="filaPersona">
-                            <CardPersona
-                                key={p.id}
-                                persona={p}
-                                accionVer={ver}
-                                accionEditar={editar}
-                                accionEliminar={eliminar}
-                            />
-                        </div>
-                    ))}
-                </div>
-                <BotonAccion key={'agregar'} txt={'🙋‍♂️ Agregar Persona 🙋‍♀️'} clase={'agregar'} accion={agregarPersona} />
+                {personas.map((p) => (
+                    <div className="filaPersona">
+                        <CardPersona
+                            key={p.dni}
+                            persona={p}
+                            accionVer={ver}
+                            accionEditar={editar}
+                            accionEliminar={eliminar}
+                        />
+                    </div>
+                ))}
             </div>
+            <BotonAccion key={'agregar'} txt={'🙋‍♂️ Agregar Persona 🙋‍♀️'} clase={'agregar'} accion={agregarPersona} />
         </>
     );
 };

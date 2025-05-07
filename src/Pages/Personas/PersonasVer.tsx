@@ -4,5 +4,5 @@ import '../../CSS/listadoFila.css';
 export const VerPersona = () => {
     const { dni } = useParams<{ dni: string }>();
 
-    return <> {dni ? <DetallePersona key={dni} dni={dni}></DetallePersona> : null}</>;
+    return <DetallePersona key={dni} dni={dni!} />;
 };

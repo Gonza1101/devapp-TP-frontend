@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Persona from '../../Model/Persona';
 import { useRef } from 'react';
 import { editPersona } from '../../API/Persona/editPersona';
-import { BotonAccion } from '../Botones/botonAccion';
+import { BotonAccion } from '../Botones/BotonAccion';
 
 type edicionPersona = {
     persona: Persona;
@@ -52,48 +52,46 @@ export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
 
     return (
         <>
-            <div className="inicio">
-                <div className="formulario">
-                    <p className="titulo">Edición</p>
-                    <form className="editar">
-                        <p>Nombre</p>
-                        <input ref={inputNombreRef} type="Nombre" defaultValue={persona?.nombre} />
+            <div className="formulario">
+                <p className="titulo">Edición</p>
+                <form className="editar">
+                    <p>Nombre</p>
+                    <input ref={inputNombreRef} type="Nombre" defaultValue={persona?.nombre} />
 
-                        <p>Apellido</p>
-                        <input ref={inputApellidRef} type="Apellido" defaultValue={persona?.apellido} />
+                    <p>Apellido</p>
+                    <input ref={inputApellidRef} type="Apellido" defaultValue={persona?.apellido} />
 
-                        <p>DNI</p>
-                        <input ref={inputDniRef} type="DNI" defaultValue={persona?.dni} />
+                    <p>DNI</p>
+                    <input ref={inputDniRef} type="DNI" defaultValue={persona?.dni} />
 
-                        <p>Fecha de Nacimiento</p>
-                        <label>{}</label>
-                        <input
-                            ref={inputFechaNacimientoRef}
-                            type="Date"
-                            name="fecha_nacimiento"
-                            defaultValue={persona?.fechaNacimiento}
-                        ></input>
+                    <p>Fecha de Nacimiento</p>
+                    <label>{}</label>
+                    <input
+                        ref={inputFechaNacimientoRef}
+                        type="Date"
+                        name="fecha_nacimiento"
+                        defaultValue={persona?.fechaNacimiento}
+                    ></input>
 
-                        <p>Donante </p>
-                        <input id="true" type="checkbox" ref={inputEsDonanteRef} />
-                        <label htmlFor="true">Sí</label>
+                    <p>Donante </p>
+                    <input id="true" type="checkbox" ref={inputEsDonanteRef} />
+                    <label htmlFor="true">Sí</label>
 
-                        <p>Genero</p>
-                        <input ref={inputGeneroRef} list="genero" type="text" defaultValue={persona?.genero} />
-                        <datalist id="genero">
-                            <option value="Masculino"></option>
-                            <option value="Femenino"></option>
-                            <option value="NoBinario"></option>
-                        </datalist>
-                    </form>
-                    <div className="botonesAccion">
-                        <BotonAccion
-                            key={'modificar'}
-                            txt={'👍 Modificar'}
-                            clase={'agregarPersona'}
-                            accion={handlerEditar}
-                        />
-                    </div>
+                    <p>Genero</p>
+                    <input ref={inputGeneroRef} list="genero" type="text" defaultValue={persona?.genero} />
+                    <datalist id="genero">
+                        <option value="Masculino"></option>
+                        <option value="Femenino"></option>
+                        <option value="NoBinario"></option>
+                    </datalist>
+                </form>
+                <div className="botonesAccion">
+                    <BotonAccion
+                        key={'modificar'}
+                        txt={'👍 Modificar'}
+                        clase={'agregarPersona'}
+                        accion={handlerEditar}
+                    />
                 </div>
             </div>
         </>

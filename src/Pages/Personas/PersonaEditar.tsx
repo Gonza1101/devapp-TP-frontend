@@ -18,5 +18,11 @@ export const EditarPersona = () => {
         obtenePersonaConId(idPersona!);
     }, [idPersona]);
 
-    return <>{idPersona ? <EdicionPersona key={idPersona} persona={persona!} /> : null}</>;
+    return (
+        <>
+            <div className="inicio">
+                {idPersona ? <EdicionPersona key={idPersona} persona={persona!} /> : null}
+            </div>
+        </>
+    );
 };

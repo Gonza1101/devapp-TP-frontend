@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Persona from '../../Model/Persona';
-import { BotonAccion } from '../Botones/botonAccion';
+import { BotonAccion } from '../Botones/BotonAccion';
 import { BotonesPopUp } from '../popUpBorrar';
 
 type cardPersonaProps = {

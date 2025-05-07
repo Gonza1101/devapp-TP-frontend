@@ -3,7 +3,9 @@ export const PersonaPage = () => {
     return (
         <>
             <div className="inicio">
-                <PersonaComponente key={'persona'} />
+                <div className="listado">
+                    <PersonaComponente key={'persona'} />
+                </div>
             </div>
         </>
     );

@@ -68,7 +68,15 @@
   }
   
   /* Clase para mostrar el popup (se togglea con JavaScript) */
-  .popup.mostrar {
+  .popup.mostrar{
+    opacity: 1;
+    visibility: visible;
+  }
+  .popup.agregar {
+    opacity: 1;
+    visibility: visible;
+  }
+  .popup.editar {
     opacity: 1;
     visibility: visible;
   }

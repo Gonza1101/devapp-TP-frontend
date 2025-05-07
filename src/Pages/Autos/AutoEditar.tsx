@@ -17,5 +17,5 @@ export const AutoEditar = () => {
         obtenerAutoConId(idAuto!);
     }, [idAuto]);
 
-    return <>{idAuto ? <EdicionAuto key={idAuto} auto={auto!} /> : null}</>;
+    return <div className="inicio">{idAuto ? <EdicionAuto key={idAuto} auto={auto!} /> : null}</div>;
 };
