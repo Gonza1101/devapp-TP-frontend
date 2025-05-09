@@ -1,78 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import Persona from '../Model/Persona';
-import Auto from '../Model/Auto';
-import { BorrarComponente } from './BorrarComponente';
+import React, { useState } from 'react';
+import { BotonesPopUp } from './popUpBorrar';
 import '../CSS/botenesAccion.css';
 import '../CSS/popup.css';
-import { useNavigate } from 'react-router-dom';
 
 type accionProps = {
-    persona: Persona;
-    auto: Auto;
-    listar: () => void;
+    tipo: string;
+    ver: boolean;
+    editar: boolean;
+    eliminar: boolean;
+    botonVer?: () => void;
+    botonEditar?: () => void;
+    botonEliminar: () => void;
 };
-export const ColumnaAccion: React.FC<accionProps> = ({ persona, auto }) => {
-    // console.log('Persona');
-    // console.log(persona);
-    // console.log('Auto');
-    // console.log(auto);
-    const navegarA = useNavigate();
-    const [clase, setClase] = useState<string>('popupborrar');
+export const ColumnaAccion: React.FC<accionProps> = ({
+    tipo,
+    ver,
+    editar,
+    eliminar,
+    botonVer,
+    botonEditar,
+    botonEliminar
+}) => {
+    const [popup, setClase] = useState<string>('popup');
+
+    const handlerBorrar = () => {
+        setClase('popup mostrar');
+    };
 
     const handlerCancelar = () => {
-        setClase('popupborrar');
+        setClase('popup');
     };
-
     const handlerEliminar = () => {
-        setClase('popupborrar');
+        botonEliminar();
+        setClase('popup');
     };
-    const accionVer = () => {
-        if (persona) {
-            navegarA(`/persona/${persona?.dni}`); // =>VerPersona
-        } else {
-            navegarA(`/auto/${auto?.id}`);
-        }
-    };
-    const accionEditar = () => {
-        if (persona) {
-            navegarA(`/persona/edit/${persona?.id}`); // =>EditarPersona
-        } else {
-            navegarA('/auto');
-        }
-    };
-    const accionBorrar = () => {
-        setClase('popupborrar mostrar');
-    };
-
-    useEffect(() => {}, []);
 
     return (
         <>
             <div className="botonesAccion">
-                <button className="ver" onClick={accionVer}>
-                    🔍
-                </button>
-                <button className="editar" onClick={accionEditar}>
-                    📝
-                </button>
-                <button className="borrar" onClick={accionBorrar}>
-                    🔫
-                </button>
+                {ver ? (
+                    <button className="ver" onClick={botonVer}>
+                        🔍
+                    </button>
+                ) : null}
+                {editar ? (
+                    <button className="editar" onClick={botonEditar}>
+                        📝
+                    </button>
+                ) : null}
+                {eliminar ? (
+                    <button className="borrar" onClick={handlerBorrar}>
+                        🔫
+                    </button>
+                ) : null}
             </div>
-            <div id="popupBorrar" className={clase}>
-                {persona ? (
-                    <BorrarComponente
-                        key={persona.id}
-                        eliminar={handlerEliminar}
-                        cancelar={handlerCancelar}
-                    ></BorrarComponente>
-                ) : (
-                    <BorrarComponente
-                        key={auto.id}
-                        eliminar={handlerEliminar}
-                        cancelar={handlerCancelar}
-                    ></BorrarComponente>
-                )}
+            <div id="popup" className={clase}>
+                <BotonesPopUp
+                    key={tipo}
+                    tipo={tipo}
+                    eliminar={handlerEliminar}
+                    cancelar={handlerCancelar}
+                ></BotonesPopUp>
             </div>
         </>
     );

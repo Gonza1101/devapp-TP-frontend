@@ -8,7 +8,8 @@ interface Persona extends Entidad {
     dni?: string;
     fechaNacimiento?: string;
     genero?: string;
-    esDonante?: boolean;
+    esDonante?: string;
+    img?: string;
     autos?: Auto[];
 }
 export default Persona;

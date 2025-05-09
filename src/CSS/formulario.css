@@ -36,7 +36,14 @@
   .formulario form input[type="DNI"],
   .formulario form input[type="Fecha de nacimiento"],
   .formulario form input[type="text"],
-  .formulario form input[type="date"] {
+  .formulario form input[type="Date"],
+  .formulario form input[type="Marca"],
+  .formulario form input[type="Modelo"],
+  .formulario form input[type="Año"],
+  .formulario form input[type="Colo"],
+  .formulario form input[type="Chasis"],
+  .formulario form input[type="Motor"],
+  .formulario form input[type="Patente"]{
     width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 15px;
@@ -52,12 +59,12 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
 
-  .formulario .botonesAccion {
+  .formulario .boton {
     margin-top: 20px;
     text-align: center;
   }
   
-  .formulario .botonesAccion button.agregarPersona {
+  .formulario .boton button.confirmar {
     background-color: #659d6a;
     color: white;
     padding: 10px 20px;
@@ -68,8 +75,23 @@
     transition: background-color 0.3s ease;
   }
   
-  .formulario .botonesAccion button.agregarPersona:hover {
+  .formulario .boton button.confirmar:hover {
     background-color: #3e6341;
+  }
+
+  .formulario .boton button.cancelar {
+    background-color: #ff3d3d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .formulario .boton button.cancelar:hover {
+    background-color: #882f2f;
   }
   
   .formulario form datalist#genero {

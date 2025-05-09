@@ -1,9 +1,11 @@
-import { addPerson } from '../API/Persona/agregarPersona';
-import '../CSS/formulario.css';
-import Persona from '../Model/Persona';
+import { useNavigate } from 'react-router-dom';
+import { addPerson } from '../../API/Persona/agregarPersona';
+import Persona from '../../Model/Persona';
 import { useRef } from 'react';
+import { BotonAccion } from '../../Components/Botones/botonAccion';
 
 export const AgregarPersona = () => {
+    const navegarA = useNavigate();
     const inputNombreRef = useRef<HTMLInputElement>(null);
     const inputApellidRef = useRef<HTMLInputElement>(null);
     const inputDniRef = useRef<HTMLInputElement>(null);
@@ -34,12 +36,11 @@ export const AgregarPersona = () => {
             dni: inputDniRef.current!.value,
             fechaNacimiento: inputFechaNacimientoRef.current!.value,
             genero: inputGeneroRef.current!.value.toLowerCase(),
-            esDonante: inputEsDonanteRef.current!.checked,
+            esDonante: inputEsDonanteRef.current!.checked.toString(),
             autos: []
         };
-        console.log(personaNueva);
-        const rta = await addPerson(personaNueva);
-        console.log(rta);
+        await addPerson(personaNueva);
+        navegarA('/personas');
     };
     return (
         <>
@@ -67,9 +68,12 @@ export const AgregarPersona = () => {
                         </datalist>
                     </form>
                     <div className="botonesAccion">
-                        <button onClick={handlerAgregar} className="agregarPersona">
-                            👍 Agregar
-                        </button>
+                        <BotonAccion
+                            key={'agregar'}
+                            txt={'👍 Agregar'}
+                            clase={'agregarPersona'}
+                            accion={handlerAgregar}
+                        />
                     </div>
                 </div>
             </div>
