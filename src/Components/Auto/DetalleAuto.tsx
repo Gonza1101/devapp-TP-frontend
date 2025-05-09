@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Auto from '../../Model/Auto';
 import Persona from '../../Model/Persona';
-import { personaConDni } from '../../API/Persona/buscarPersona';
-import { findAutoWithPatente } from '../../API/Auto/buscarAuto';
-import { BotonAccion } from '../Botones/botonAccion';
+import { personaConId } from '../../API/Persona/personaConId';
+import { findAutoWithId } from '../../API/Auto/buscarAuto';
+import { BotonAccion } from '../Botones/BotonAccion';
 import '../../CSS/botenesAccion.css';
 
 type detalleAutoProps = {
@@ -16,11 +16,11 @@ export const DetalleAuto: React.FC<detalleAutoProps> = ({ patente }) => {
     const [propietario, setPropietario] = useState<Persona | undefined>(undefined);
 
     const autoActual = async (miPatente: string) => {
-        const response = await findAutoWithPatente(miPatente!);
+        const response = await findAutoWithId(miPatente!);
         setAuto(response);
     };
     const obtenerPropietario = async () => {
-        const persona = await personaConDni(auto.idDueño!);
+        const persona = await personaConId(auto!.idDueño!);
         console.log(persona);
         setPropietario(persona);
     };
@@ -38,8 +38,8 @@ export const DetalleAuto: React.FC<detalleAutoProps> = ({ patente }) => {
     const acccionCancelar = () => {
         setPopUp('popup');
     };
-    const editarAuto = () => {};
-    const eliminarAuto = () => {};
+    // const editarAuto = () => {};
+    // const eliminarAuto = () => {};
 
     useEffect(() => {
         autoActual(patente);
@@ -49,7 +49,7 @@ export const DetalleAuto: React.FC<detalleAutoProps> = ({ patente }) => {
         <>
             <div className="inicio">
                 <div className="detalle">
-                    <img src={img(auto)} alt="" />
+                    <img src={img(auto!)} alt="" />
                     <div className="detalleDato">
                         <p>Marca: {auto?.marca}</p>
                         <p>Dueño: {auto?.idDueño}</p>

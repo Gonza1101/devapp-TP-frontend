@@ -6,8 +6,10 @@ import { BotonAccion } from '../Botones/BotonAccion';
 
 type edicionPersona = {
     persona: Persona;
+    accionConfirmar?: () => void;
+    accionCancelar: () => void;
 };
-export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
+export const EdicionPersona: React.FC<edicionPersona> = ({ persona, accionConfirmar, accionCancelar }) => {
     const navegarA = useNavigate();
     const inputNombreRef = useRef<HTMLInputElement>(null);
     const inputApellidRef = useRef<HTMLInputElement>(null);
@@ -15,6 +17,14 @@ export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
     const inputFechaNacimientoRef = useRef<HTMLInputElement>(null);
     const inputGeneroRef = useRef<HTMLInputElement>(null);
     const inputEsDonanteRef = useRef<HTMLInputElement>(null);
+
+    const handlerCancelar = () => {
+        if (accionConfirmar) {
+            accionCancelar();
+        } else {
+            navegarA('/personas');
+        }
+    };
     const handlerEditar = () => {
         if (
             !(
@@ -26,11 +36,18 @@ export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
             )
         ) {
             editarPersona();
+            handlerThen();
         } else {
             alert('Complete todos los datos');
         }
     };
-
+    const handlerThen = () => {
+        if (accionConfirmar) {
+            accionConfirmar();
+        } else {
+            navegarA('/personas');
+        }
+    };
     const editarPersona = async () => {
         const personaEditada: Persona = {
             nombre: inputNombreRef.current!.value,
@@ -42,18 +59,16 @@ export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
             autos: []
         };
         const rta = await editPersona(persona.id!, personaEditada);
-        console.log(rta === 200);
         if (rta === 200) {
-            navegarA('/personas');
+            alert('Persona Editada');
         } else {
             alert('error 400');
         }
     };
-
     return (
         <>
             <div className="formulario">
-                <p className="titulo">Edición</p>
+                <p className="titulo">Editar Persona</p>
                 <form className="editar">
                     <p>Nombre</p>
                     <input ref={inputNombreRef} type="Nombre" defaultValue={persona?.nombre} />
@@ -86,12 +101,8 @@ export const EdicionPersona: React.FC<edicionPersona> = ({ persona }) => {
                     </datalist>
                 </form>
                 <div className="botonesAccion">
-                    <BotonAccion
-                        key={'modificar'}
-                        txt={'👍 Modificar'}
-                        clase={'agregarPersona'}
-                        accion={handlerEditar}
-                    />
+                    <BotonAccion key={'modificar'} txt={'👍 Modificar'} clase={'ver'} accion={handlerEditar} />
+                    <BotonAccion key={'cancelar'} txt={'Cancelar'} clase={'borrar'} accion={handlerCancelar} />
                 </div>
             </div>
         </>

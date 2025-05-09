@@ -1,4 +1,5 @@
 import { PersonaComponente } from '../../Components/Persona/PersonaComponente';
+import '../../CSS/botenesAccion.css';
 export const PersonaPage = () => {
     return (
         <>

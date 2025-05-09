@@ -3,19 +3,19 @@ import React, { Dispatch, useEffect, useRef, useState } from 'react';
 import { editAuto } from '../../API/Auto/editAuto';
 import Auto from '../../Model/Auto';
 import { BotonAccion } from '../Botones/BotonAccion';
-import { findAutoWithPatente } from '../../API/Auto/buscarAuto';
+import { findAutoWithId } from '../../API/Auto/buscarAuto';
 
 type edicionAuto = {
-    patente: string;
+    id: string;
     accionConfirmar: Dispatch<React.SetStateAction<string>>;
     accionCancelar: () => void;
 };
-export const EdicionAuto: React.FC<edicionAuto> = ({ patente, accionConfirmar, accionCancelar }) => {
+export const EdicionAuto: React.FC<edicionAuto> = ({ id, accionConfirmar, accionCancelar }) => {
     // const navegarA = useNavigate();
     const [auto, setAuto] = useState<Auto>();
 
-    const obtenerAuto = async (patente: string) => {
-        const response = await findAutoWithPatente(patente);
+    const obtenerAuto = async (idAuto: string) => {
+        const response = await findAutoWithId(idAuto);
         setAuto(response);
     };
     const inputMarcaRef = useRef<HTMLInputElement>(null);
@@ -52,7 +52,7 @@ export const EdicionAuto: React.FC<edicionAuto> = ({ patente, accionConfirmar, a
             idDueño: auto!.idDueño,
             marca: inputMarcaRef.current!.value,
             modelo: inputModeloRef.current!.value,
-            anio: inputAnioRef.current!.value,
+            anio: parseInt(inputAnioRef.current!.value),
             color: inputColorRef.current!.value,
             numeroChasis: inputNumeroChasisRef.current!.value,
             motor: inputMotorRef.current!.value,
@@ -69,12 +69,12 @@ export const EdicionAuto: React.FC<edicionAuto> = ({ patente, accionConfirmar, a
     };
 
     useEffect(() => {
-        obtenerAuto(patente);
-    }, [patente]);
+        obtenerAuto(id);
+    }, [id]);
     return (
         <>
             <div className="formulario">
-                <p className="titulo">Edición</p>
+                <p className="titulo">Editar Auto</p>
                 <form className="editar">
                     <p>Marca</p>
                     <input ref={inputMarcaRef} type="Marca" defaultValue={auto?.marca} />

@@ -21,17 +21,17 @@ export const AgregarAuto: React.FC<agregarProps> = ({ dniPersona, accionCancelar
     const inputPatenteRef = useRef<HTMLInputElement>(null);
 
     const handlerAgregar = async () => {
-        const autoEditado: Auto = {
+        const autoNuevo: Auto = {
             idDueño: dniPersona,
             marca: inputMarcaRef.current!.value,
             modelo: inputModeloRef.current!.value,
-            anio: inputAnioRef.current!.value,
+            anio: parseInt(inputAnioRef.current!.value),
             color: inputColorRef.current!.value,
             numeroChasis: inputNumeroChasisRef.current!.value,
             motor: inputMotorRef.current!.value,
             patente: inputPatenteRef.current!.value
         };
-        const rta = await addAuto(autoEditado);
+        const rta = await addAuto(autoNuevo);
         if (rta.status === 200) {
             alert(`${rta.data}`);
             accionConfirmar('popup');

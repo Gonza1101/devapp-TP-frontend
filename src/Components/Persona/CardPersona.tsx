@@ -13,7 +13,7 @@ export const CardPersona: React.FC<cardPersonaProps> = ({ persona, accionVer, ac
     const [mostrar, setMostrar] = useState<string>('popup');
     const img = `https://rickandmortyapi.com/api/character/avatar/${persona.img}.jpeg`;
     const botonVer = () => {
-        accionVer(persona.dni!);
+        accionVer(persona.id!);
     };
     const botonEditar = () => {
         accionEditar(persona.id!);

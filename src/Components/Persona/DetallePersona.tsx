@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Persona from '../../Model/Persona';
 import { CardAuto } from '../Auto/CardAuto';
 import { useNavigate } from 'react-router-dom';
-import { personaConDni } from '../../API/Persona/buscarPersona';
 import { patchAuto } from '../../API/Auto/patchAuto';
 import { BotonAccion } from '../Botones/BotonAccion';
-// import { EdicionAuto } from '../Auto/EdicionAuto';
 import { AgregarAuto } from '../Auto/agregarAuto';
-// import { BotonesPopUp } from '../popUpBorrar';
-// import Auto from '../../Model/Auto';
-// import { editAuto } from '../../API/Auto/editAuto';
+import { personaConId } from '../../API/Persona/personaConId';
+import { deletePersona } from '../../API/Persona/deletePersona';
+import { BotonesPopUp } from '../popUpBorrar';
+import { EdicionPersona } from './EdicionPersona';
+import { EdicionAuto } from '../Auto/EdicionAuto';
 
 type detallePersonaProps = {
     dni: string;
@@ -17,13 +17,42 @@ type detallePersonaProps = {
 export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
     const [persona, setPersona] = useState<Persona>();
     const [verAgregar, setVerAgregar] = useState<string>('popup');
+    const [verEditar, setVerEditar] = useState<string>('popup');
+    const [verEditarAuto, setVerEditarAuto] = useState<string>('popup');
+    const [mostrar, setMostrar] = useState<string>('popup');
     const navegarA = useNavigate();
     //Busco la Persona con el DNI pasado por parametro en URL.
     const personaActual = async (dniPersona: string) => {
-        const response = await personaConDni(dniPersona);
+        const response = await personaConId(dniPersona);
         setPersona(response);
     };
     const imgPersona = `https://rickandmortyapi.com/api/character/avatar/${persona?.img}.jpeg`;
+
+    //Acciones que tendran los botones sobre la Persona.
+    const agregarAuto = () => {
+        // navegarA(`/auto/add/${persona?.dni}`);
+        setVerAgregar('popup mostrar');
+    };
+    const handlerEditar = () => {
+        // navegarA(`/persona/edit/${persona?.id}`);
+        setVerEditar('popup mostrar');
+    };
+    const handlerConfirmar = () => {
+        setVerEditar('popup');
+    };
+    const handlerEliminar = () => {
+        setMostrar('popup mostrar');
+    };
+
+    const borrarPersona = async () => {
+        const rtaEliminar = await deletePersona(persona!.id!);
+        if (rtaEliminar.status === 200) {
+            alert('Eliminado');
+            navegarA('/personas');
+        } else {
+            alert('Ocurrio un Error');
+        }
+    };
     //Acciones que tendran los botones sobre la lista de autos de la Persona.
 
     const handlerEliminarAuto = (idAuto: string) => {
@@ -32,35 +61,14 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
             patchAuto(persona!.id!, idAuto);
         }
     };
-    const agregarAuto = () => {
-        // navegarA(`/auto/add/${persona?.dni}`);
-        setVerAgregar('popup mostrar');
-    };
     const handlerCancelar = () => {
         setVerAgregar('popup');
+        setMostrar('popup');
+        setVerEditar('popup');
     };
-    // const handlerConfirmar = () => {
-    //     setPopUp('popup');
-    //     personaActual(dni);
-    // };
-    // const handlerEditar = async (idAuto: string, autoEditado: Auto) => {
-    //     const rta = await editAuto(idAuto, autoEditado);
-    //     if (rta.status === 200) {
-    //         alert('Actualizado');
-    //         navegarA('/autos');
-    //     } else {
-    //         alert('Error 400');
-    //     }
-    // };
-
     const ver = (id: string) => {
         navegarA(`/auto/${id}`);
     };
-    // const editar = (id: string) => {
-    //     console.log(id);
-    //     // navegarA(`/auto/edit/${idAuto}`);
-    //     setVerAgregar('popup agregar');
-    // };
     const esDonante = () => {
         if (persona?.esDonante) {
             return 'Si';
@@ -70,11 +78,10 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
     };
     //las dependencia que se agregan en [] son la que useEffect
     // debe tener en cuenta para un eventual cambio y actualizar
-
     useEffect(() => {
         personaActual(dni);
-        // setPopUp('popup');
-    }, [verAgregar]);
+        // setMostrar('popup');
+    }, [dni, verAgregar, verEditar, verEditarAuto]);
     return (
         <>
             <div className="inicio">
@@ -88,14 +95,17 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
                         <p>Genero: {persona?.genero}</p>
                         <p>Donante: {esDonante()}</p>
                     </div>
-                    <BotonAccion
-                        key={'agregarAuto'}
-                        txt={'🚗 Agregar Auto 🚙'}
-                        clase={'agregar'}
-                        accion={agregarAuto}
-                    />
+                    <div className="botonesAccion">
+                        <BotonAccion key={'agregarAuto'} txt={'🚗 Agregar'} clase={'ver'} accion={agregarAuto} />
+                        <BotonAccion key={'editar'} txt={'📝 editar'} clase={'editar'} accion={handlerEditar} />
+                        <BotonAccion key={'borrar'} txt={'🗑 Borrar'} clase={'borrar'} accion={handlerEliminar} />
+                    </div>
                 </div>
+                {
+                    //TODO Agregar Boton de editar y Borrar
+                }
                 <div className="listado">
+                    <p>Autos</p>
                     {persona !== undefined
                         ? persona?.autos!.map((a) => (
                               <>
@@ -113,14 +123,38 @@ export const DetallePersona: React.FC<detallePersonaProps> = ({ dni }) => {
                                   <div className={verAgregar}>
                                       <AgregarAuto
                                           key={'agregar'}
-                                          dniPersona={dni}
+                                          dniPersona={persona.id!}
                                           accionConfirmar={setVerAgregar}
+                                          accionCancelar={handlerCancelar}
+                                      />
+                                  </div>
+                                  <div className={verEditarAuto}>
+                                      <EdicionAuto
+                                          key={'editarAuto'}
+                                          id={a.id!}
+                                          accionConfirmar={setVerEditarAuto}
                                           accionCancelar={handlerCancelar}
                                       />
                                   </div>
                               </>
                           ))
                         : null}
+                </div>
+                <div id="popup" className={mostrar}>
+                    <BotonesPopUp
+                        key={'Persona'}
+                        txt={`¿Realmente quiere eliminar a ${persona?.nombre}`}
+                        eliminar={borrarPersona}
+                        cancelar={handlerCancelar}
+                    ></BotonesPopUp>
+                </div>
+                <div id="popup" className={verEditar}>
+                    <EdicionPersona
+                        key={'editar'}
+                        persona={persona!}
+                        accionConfirmar={handlerConfirmar}
+                        accionCancelar={handlerCancelar}
+                    />
                 </div>
             </div>
         </>

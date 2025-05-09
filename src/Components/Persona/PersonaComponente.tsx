@@ -16,8 +16,8 @@ export const PersonaComponente = () => {
     const agregarPersona = () => {
         navegarA('/persona/add');
     };
-    const ver = (dniPersona: string) => {
-        navegarA(`/persona/${dniPersona}`);
+    const ver = (idPersona: string) => {
+        navegarA(`/persona/${idPersona}`);
     };
     const editar = (idPersona: string) => {
         navegarA(`/persona/edit/${idPersona}`);
@@ -37,6 +37,7 @@ export const PersonaComponente = () => {
     return (
         <>
             <p>LISTADO DE PERSONAS</p>
+            <BotonAccion key={'agregar'} txt={'🙋‍♂️ Agregar Persona 🙋‍♀️'} clase={'agregar'} accion={agregarPersona} />
             <div className="listado">
                 {personas.map((p) => (
                     <div className="filaPersona">
@@ -50,7 +51,6 @@ export const PersonaComponente = () => {
                     </div>
                 ))}
             </div>
-            <BotonAccion key={'agregar'} txt={'🙋‍♂️ Agregar Persona 🙋‍♀️'} clase={'agregar'} accion={agregarPersona} />
         </>
     );
 };

@@ -1,8 +1,7 @@
 .botonesAccion {
     display: flex; /* Para alinear los botones horizontalmente */
     gap: 10px; /* Espacio entre los botones */
-    justify-content: flex-end; /* Alinea los botones a la derecha de la fila (opcional, depende de tu diseño) */
-    margin-left: auto; /* Si no usas justify-content: flex-end, esto también puede empujar los botones a la derecha */
+    justify-content: center; /* Alinea los botones a la derecha de la fila (opcional, depende de tu diseño) */
   }
 
 .agregar{
@@ -50,7 +49,6 @@
     background-color: #659d6a; /* Azul para "Ver" o "Detalles" */
     color: white;
 }
-  
 .botonesAccion button.ver:hover {
     background-color: #145a32;
 }
@@ -66,7 +64,7 @@
   
 .botonesAccion button.borrar {
     background-color: #e6b0aa; /* Rojo para "Borrar" */
-    color: white;
+    color: #333;
 }
   
 .botonesAccion button.borrar:hover {

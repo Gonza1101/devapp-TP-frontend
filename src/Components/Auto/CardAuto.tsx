@@ -7,7 +7,7 @@ import '../../CSS/botenesAccion.css';
 import { EdicionAuto } from './EdicionAuto';
 // import { findAutoWithPatente } from '../../API/Auto/buscarAuto';
 import { BotonesPopUp } from '../popUpBorrar';
-// import { findAutoWithPatente } from '../../API/Auto/buscarAuto';
+import { findAutoWithId } from '../../API/Auto/buscarAuto';
 
 type cardAutoProps = {
     auto: Auto;
@@ -27,7 +27,7 @@ export const CardAuto: React.FC<cardAutoProps> = ({ auto, accionVer, accionElimi
     //     setAuto(response);
     // };
     const botonVer = () => {
-        accionVer(auto!.patente);
+        accionVer(auto.id!);
     };
     const botonEditar = () => {
         // accionEditar(auto.id!);
@@ -35,7 +35,7 @@ export const CardAuto: React.FC<cardAutoProps> = ({ auto, accionVer, accionElimi
         setVerEditarAuto('popup editar');
     };
     const eliminar = async () => {
-        const idAuto = await (await findAutoWithPatente(auto.patente)).id;
+        const idAuto = await (await findAutoWithId(auto.patente)).id;
         accionEliminar(idAuto!); //no tengo el id del auto
     };
     const handlerCancelar = () => {
@@ -43,7 +43,7 @@ export const CardAuto: React.FC<cardAutoProps> = ({ auto, accionVer, accionElimi
     };
     const handlerEliminar = () => {
         // accionEliminar(auto.id!);
-        setPopUp('popup');
+        setPopUp('popup mostrar');
     };
     // useEffect(() => {
     //     obtenerAuto(autoPatente);
@@ -63,7 +63,7 @@ export const CardAuto: React.FC<cardAutoProps> = ({ auto, accionVer, accionElimi
             <div className={verEditarAuto}>
                 <EdicionAuto
                     key={'auto'}
-                    patente={auto!.patente}
+                    id={auto.id!}
                     accionConfirmar={setVerEditarAuto}
                     accionCancelar={handlerCancelar}
                 />

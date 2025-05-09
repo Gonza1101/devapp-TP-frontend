@@ -1,9 +1,9 @@
 import Persona from '../../Model/Persona';
 import { useEffect, useState } from 'react';
-import { personaConId } from '../../API/Persona/persocaConId';
 import { EdicionPersona } from '../../Components/Persona/EdicionPersona';
 import { useParams } from 'react-router-dom';
 import '../../CSS/formulario.css';
+import { personaConId } from '../../API/Persona/personaConId';
 
 export const EditarPersona = () => {
     const { idPersona } = useParams<{ idPersona: string }>();
@@ -20,9 +20,7 @@ export const EditarPersona = () => {
 
     return (
         <>
-            <div className="inicio">
-                {idPersona ? <EdicionPersona key={idPersona} persona={persona!} /> : null}
-            </div>
+            <div className="inicio">{idPersona ? <EdicionPersona key={idPersona} persona={persona!} /> : null}</div>
         </>
     );
 };
